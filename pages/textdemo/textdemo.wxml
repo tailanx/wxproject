@@ -1,0 +1,43 @@
+<!--pages/textdemo/textdemo.wxml-->
+
+<!-- <web-view src ="http://www.haixue.com/re-center"></web-view> -->
+<view>
+
+  <view class="container-1">
+    <view class="container">
+      <text class="time_s">开盘日期:</text>
+      <text class="time_d">{{starData}}</text>
+    </view>
+
+
+
+ <view wx:if = "{{!showDetaili}}" class="time_d_1 ">
+      <view class="container_2">
+        <text class="time_s_1"> 楼盘特色1</text>
+        <view class="time_s_3">生态公园、茶溪谷度假公园、马峦山郊野公园、坪山体育中心</view>
+      </view>
+    </view>
+
+    <view wx:if = "{{showDetaili}}" class="time_d_1 {{showDetaili ? 'showed':'hided'}}">
+      <view class="container_2">
+        <text class="time_s_1"> 楼盘特色1</text>
+        <view class="time_s_3">{{content_detail}}</view>
+      </view>
+
+       <view class="container_2">
+        <text class="time_s_1"> 楼盘特色2</text>
+        <view class="time_s_3">提供深圳福田深圳楼盘 楼盘信息的最新动态.买新房-安全更重要!安全中介选</view>
+      </view>
+    </view>
+
+
+
+    <view class="showmore" bindtap="changemore">{{showDetaili ? "收起更多":"显示更多"}}</view>
+
+
+
+  </view>
+
+
+
+</view>

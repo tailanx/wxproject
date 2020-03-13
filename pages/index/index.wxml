@@ -1,0 +1,33 @@
+<!--index.wxml-->
+<import src="../../template/movie-template/movie-template.wxml" />
+<view class="view">
+  <view class="search" bindtap="getGolbalData">
+    <navigator >
+      <icon type="search" size="10"></icon>搜索
+    </navigator>
+  </view>
+  <view class="banner_detail">
+    <swiper class="banner" indicator-dots="{{indicators}}" bindchange="changs" circular="{{circulars}}" autoplay="{{auto}}" interval="{{times}}" style="height:{{swipterHeight}}">
+      <block wx:for="{{swiper}}" wx:key="keys">
+        <swiper-item>
+
+          <navigator class="navigator">
+            <image src="{{item.banner_url}}" model="widthFix" bindload="imgload">
+            </image>
+          </navigator>
+
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view>
+  </view>
+
+  <template is="template-subject" data="{{movieList}}" ></template>
+
+  
+
+
+ 
+
+</view>

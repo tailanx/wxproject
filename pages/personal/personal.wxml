@@ -1,0 +1,50 @@
+<!--pages/personal/personal.wxml-->
+<view class="containe">
+  <view class="avatar">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo">获取用户信息
+    </button>
+    <block wx:else>
+      <image src="{{userInfo.avatarUrl}}"></image>
+      <text>{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="info">
+    <view class="detail" >
+      <text>
+      城市
+     </text>
+      <text>
+      {{userInfo.city}}
+      </text>
+    </view>
+
+    <view class="detail">
+      <text>
+      省份
+    </text>
+      <text>
+      {{userInfo.province}}
+    </text>
+    </view>
+
+    <view class="detail">
+      <text>
+      国家
+    </text>
+      <text>
+      {{userInfo.country}}
+    </text>
+    </view>
+
+
+    <view class="detail">
+      <text>
+      性别
+    </text>
+      <text>
+      {{userInfo.gender === 1 ? "男":"女"}}
+    </text>
+    </view>
+  </view>
+
+</view>

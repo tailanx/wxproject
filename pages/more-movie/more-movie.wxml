@@ -1,0 +1,4 @@
+<!--pages/more-movie/more-movie.wxml-->
+<import src = "../../template/movie-template/movie-template.wxml"/>
+
+<template is="movie-list" data = "{{searchData}}" ></template>

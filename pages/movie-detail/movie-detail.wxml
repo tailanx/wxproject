@@ -1,0 +1,131 @@
+<view class="container">
+  <view class="moviecontent">
+    <view class="movie name">
+      <text class="name"> 诛仙1(2019)</text>
+    </view>
+
+    <view class="movie summary">
+      <view class="movie-summary">
+        <view class="movie-img">
+          <image src="https://img9.doubanio.com/view/photo/s_ratio_poster/public/p2567346094.webp">
+          </image>
+        </view>
+        <view class="movie-detail">
+          <view class="movie-show-detail">
+            <text>导演: </text>
+            <text class="movie-name-detail">程小东</text>
+          </view>
+          <view class="movie-show-detail">
+            <text>编剧: </text>
+            <text class="movie-name-detail">申诫/宋朝云</text>
+          </view>
+          <view class="movie-show-detail">
+            <text>主演: </text>
+            <text class="movie-name-detail">萧战/李青/蒙昧期</text>
+          </view>
+          <view class="movie-show-detail">
+            <text>类型: </text>
+            <text class="movie-name-detail">爱钱/奇幻/古装</text>
+          </view>
+          <view class="movie-show-detail">
+            <text>制片国家/地区: </text>
+            <text class="movie-name-detail">中国大陆</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="movie introduce">
+      <view class="movie-introduce">诛仙1的剧情介绍。。。
+      </view>
+
+      <view class="movie-introduce-detail" style="text-indent:2em">
+        <text>草庙村被屠，少年张小凡双亲离世，被青云门大竹峰收留。机缘巧合之下，他习得佛门天音功法，又意外获得魔教法器烧火棍，踏上强者之路的同时，也让他陷入了巨大的危机。至魔法器的现世，与陆雪琪、碧瑶、田灵儿三个女生间命运的交错，都让他原本单纯的人生轨迹充满变数。一个勇者驳斥命运的传奇之旅就此展......
+       </text>
+
+      </view>
+    </view>
+
+    <view class="movie actor">
+      <view class="movie-actor">诛仙的演员...</view>
+
+      <scroll-view scroll-x="true" class="movie-actor-scroll" >
+      <view class="movie-actor-show" >
+        <view class="movie-actor-list">
+          <image class  = "movie-actor-head" src="https://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p17793.jpg">
+
+          </image>
+          <view class="movie-actor-detail">
+            <text class="movie-actor-detail-daoy">导演</text>
+            <text class="movie-actor-detail-daoy-name">程小东</text>
+          </view>
+        </view>
+
+        <view class="movie-actor-list">
+          <image class  = "movie-actor-head" src="https://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p17793.jpg">
+
+          </image>
+          <view class="movie-actor-detail">
+            <text class="movie-actor-detail-daoy">导演</text>
+            <text class="movie-actor-detail-daoy-name">程小东</text>
+          </view>
+        </view>
+
+        <view class="movie-actor-list">
+          <image class  = "movie-actor-head" src="https://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p17793.jpg">
+
+          </image>
+          <view class="movie-actor-detail">
+            <text class="movie-actor-detail-daoy">导演</text>
+            <text class="movie-actor-detail-daoy-name">程小东</text>
+          </view>
+        </view>
+
+        <view class="movie-actor-list">
+          <image class  = "movie-actor-head" src="https://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p17793.jpg">
+
+          </image>
+          <view class="movie-actor-detail">
+            <text class="movie-actor-detail-daoy">导演</text>
+            <text class="movie-actor-detail-daoy-name">程小东</text>
+          </view>
+        </view>
+
+        <view class="movie-actor-list">
+          <image class  = "movie-actor-head" src="https://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p17793.jpg">
+
+          </image>
+          <view class="movie-actor-detail">
+            <text class="movie-actor-detail-daoy">导演</text>
+            <text class="movie-actor-detail-daoy-name">程小东</text>
+          </view>
+        </view>
+
+        <view class="movie-actor-list">
+          <image class  = "movie-actor-head" src="https://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p17793.jpg">
+
+          </image>
+          <view class="movie-actor-detail">
+            <text class="movie-actor-detail-daoy">导演</text>
+            <text class="movie-actor-detail-daoy-name">程小东</text>
+          </view>
+        </view>
+
+        <view class="movie-actor-list">
+          <image class  = "movie-actor-head" src="https://img3.doubanio.com/view/celebrity/s_ratio_celebrity/public/p17793.jpg">
+
+          </image>
+          <view class="movie-actor-detail">
+            <text class="movie-actor-detail-daoy">导演</text>
+            <text class="movie-actor-detail-daoy-name">程小东</text>
+          </view>
+        </view>
+      </view>
+
+      </scroll-view>
+
+    </view>
+  </view>
+  <button open-type="share" bindtap="getGolbalData">进入客服会话</button>
+
+</view>

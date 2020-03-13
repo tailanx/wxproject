@@ -1,0 +1,2246 @@
+<!DOCTYPE html>
+<!-- saved from url=(0301)http://192.168.65.66:8091/sean-web/plugins/sean-mobileapproval/web/approval_Todo.html?todoType=1&bizId=000000053191000000489205&zmodel=1&title=%E5%90%88%E5%90%8C%E5%BC%80%E5%B7%A5%E4%BB%A4%E7%AE%A1%E7%90%86%EF%BC%9A%E9%99%88%E6%B8%85%E8%B1%B9-%E6%B5%8B%E8%AF%95%E5%90%88%E5%90%8C-1-3600000436-20200305 -->
+<html manifest="mapproval.appcache"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>审批流程</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+    <link rel="stylesheet" type="text/css" href="./审批流程_files/common.css">
+    <link rel="stylesheet" type="text/css" href="./审批流程_files/zepto.alert.css">
+    <link rel="stylesheet" type="text/css" href="./审批流程_files/style.css">
+    <link rel="stylesheet" type="text/css" href="./审批流程_files/todo.css">
+
+    <script type="text/javascript" src="./审批流程_files/zepto.min.js"></script>
+    <script type="text/javascript" src="./审批流程_files/zepto.alert.js"></script>
+    <script type="text/javascript" src="./审批流程_files/classJs.js"></script>
+    <script type="text/javascript" src="./审批流程_files/config.js"></script>
+    <script type="text/javascript" src="./审批流程_files/constants.js"></script>
+    <script type="text/javascript" src="./审批流程_files/iscroll.js"></script>
+    <script type="text/javascript" src="./审批流程_files/mapproval.js"></script>
+</head>
+<body>
+<div id="approvalItem">
+    <div id="header">
+        <div id="headTop">
+            <div onclick="fn_goback()">
+                <div class="backIcon fl"><img src="./审批流程_files/backIcon.png"></div>
+                <div><span class="return_title">返回</span></div>
+            </div>
+            <div class="header_title"><h2 id="header_title" style="left: 152px;">流程审批</h2></div>
+            <div class="homeIcon fr" onclick="fn_gobackHome()"><img src="./审批流程_files/home.png"></div>
+        </div>
+
+        <div id="myModal">
+            <div id="myModal-body" class="hide">
+                <div id="detailTable7Wrapper" style="overflow: hidden;">
+                    <div id="detailTable7Scroller" style="transition-property: transform; transform-origin: 0px 0px; transform: translate(0px, 0px) translateZ(0px);">
+                        <p></p>
+                    </div>
+                </div>
+                <a class="close-reveal-modal hide" onclick="closerevealmodal()">×</a>
+            </div>
+        </div>
+        <div id="myModalMask" class="hide"></div>
+        <div class="list_item" id="zmodel2" style="display: none;">
+            <ul id="detailTabs2">
+                <li class="baseInfo" id="Level-tab" onclick="getLeaveInfos(activeIds.company,1)">公司级</li>
+                <li id="detail-Item-tab" onclick="getItemData(activeIds.project,3);">项目级</li>
+                <li id="detail-Plan-tab" onclick="getPlanData(activeIds.plan,4);">计划级</li>
+                <li class="approval " id="approvalPlanTab" onclick="getApprovalItemData(activeIds.company,2)">审批处理</li>
+            </ul>
+        </div>
+        <div class="list_item" id="zmodel1" style="display: block;">
+            <ul id="detailTabs">
+                <li class="baseInfo" id="basic-info">基本信息</li>
+                <li class="detailTable1" id="detail-table1-tab" onclick="getDetailTableData(activeBizId,1)">楼栋信息</li>
+                <li class="detailTable2" id="detail-table2-tab" onclick="getDetailTableData(activeBizId,2)">历史开工</li>
+                <li class="approval right-radius active" id="approvalTab" onclick="getApprovalData(activeBizId)">审批处理</li>
+            </ul>
+        </div>
+    </div>
+    <div class="contain" id="contain">
+
+        <div class="list_content hide" id="baseInfo">
+            <table class="dataInfo_table" id="basic-infos">
+                <!-- <colgroup>
+							<col style="width:30%;"></col>
+							<col style="width:70%;"></col>
+						</colgroup> -->
+                <tbody id="basic-infos-body"><tr class="dataInfo_table_tr"><td class="dataInfo_table_td_first"><p>报审公司：</p></td><td class="dataInfo_table_td_second"><p>集团总部</p></td></tr><tr class="dataInfo_table_tr"><td class="dataInfo_table_td_first"><p>报审人：</p></td><td class="dataInfo_table_td_second"><p>陈清豹</p></td></tr><tr class="dataInfo_table_tr"><td class="dataInfo_table_td_first"><p>合同名称：</p></td><td class="dataInfo_table_td_second"><p>测试合同-1</p></td></tr><tr class="dataInfo_table_tr"><td class="dataInfo_table_td_first"><p>甲方公司名称：</p></td><td class="dataInfo_table_td_second"><p>长沙宝瑞房地产开发有限公司</p></td></tr><tr class="dataInfo_table_tr"><td class="dataInfo_table_td_first"><p>项目名称：</p></td><td class="dataInfo_table_td_second"><p>恒大绿洲</p></td></tr><tr class="dataInfo_table_tr"><td class="dataInfo_table_td_first"><p>施工方名称：</p></td><td class="dataInfo_table_td_second"><p>中国建筑第五工程局</p></td></tr><tr class="dataInfo_table_tr"><td class="dataInfo_table_td_first"><p>开工令编号：</p></td><td class="dataInfo_table_td_second"><p>3600000436</p></td></tr><tr class="dataInfo_table_tr"><td class="dataInfo_table_td_first"><p>实际进场日期：</p></td><td class="dataInfo_table_td_second"><p>20200110</p></td></tr></tbody>
+            </table>
+            <!-- <div id="basic-attach"></div> -->
+        </div>
+
+
+        <div class="list_content hide" id="detailTable1">
+            <h4 id="detailTable1Title">楼栋信息</h4>
+            <div id="detailWrapper" style="overflow: hidden;">
+                <div id="detail1Scroller" style="display: block; transition-property: transform; transform-origin: 0px 0px; transform: translate(0px, 0px) translateZ(0px);">
+                    <div id="detailTable1Wrapper" style="overflow: hidden;">
+                        <div id="detailTable1Scroller" style="transition-property: transform; transform-origin: 0px 0px; transform: translate(0px, 0px) translateZ(0px);">
+                            <div class="row">
+                                <table class="detail_table">
+                                    <tbody><tr class="tableTitle" id="detailTable1Header"></tr>
+                                    </tbody><tbody id="detailTable1Body"></tbody>
+                                </table>
+                                <h4 id="detailTable3Title"></h4>
+                                <table>
+                                    <tbody><tr id="detailTable6Header"></tr>
+                                    </tbody><tbody id="detailTable6Body"></tbody>
+                                </table>
+                                <div id="basic-attach"><table class="detail_table"><thead><tr class="detail_table_tr"><td class="detail_table_td_first" style="width:33.3%"><p>附件说明</p></td><td class="detail_table_td_second" style="width:33.3%"><p>未提供附件原因</p></td><td class="detail_table_td_third" style="width:33.3%"><p>附件</p></td></tr></thead><tfoot><tr class="detail_table_tr"><td class="detail_table_td_first" style="width:33.3%"><p>开工令</p></td><td class="detail_table_td_second" style="width:33.3%"><p>-</p></td><td class="detail_table_td_third" style="width:33.3%"><p class="file-text" onclick="dlAttach(&#39;5E60AB39A7CB6F3BE10000000A646441&#39;,&#39;开工令.pdf&#39;,&#39;13K&#39;)">开工令.pdf<span class="atth-size" style="margin-left:5px !important;">(13K)</span></p><span onclick="docConvertAndDownload(&#39;5E60AB39A7CB6F3BE10000000A646441&#39;,&#39;1583401016000.pdf&#39;)" class="pdf_img"></span></td></tr></tfoot></table></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="list_content hide" id="detailTable2">
+            <h4 id="detailTable2Title">历史开工令</h4>
+            <div id="detail2Wrapper" style="overflow: hidden;">
+                <div id="detail2Scroller" style="transition-property: transform; transform-origin: 0px 0px; transform: translate(0px, 0px) translateZ(0px);">
+                    <div id="detailTable2Wrapper" style="overflow: hidden;">
+                        <div id="detailTable2Scroller" style="transition-property: transform; transform-origin: 0px 0px; transform: translate(0px, 0px) translateZ(0px);">
+                            <div class="row">
+                                <table>
+                                    <tbody><tr class="tableTitle" id="detailTable2Header"></tr>
+                                    </tbody><tbody id="detailTable2Body"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="list_content" id="approval_contain">
+            <!--加签编辑窗口-->
+            <div id="editLabel" class="hide">
+                <table class="approval_table signup_table">
+                    <tbody><tr class="signup_table_tr" id="discription_tr1">
+                        <td class="border_td color_cell signup_title_td">　描述：</td>
+                        <td colspan="2"><textarea id="discription" rows="1" cols="1" maxlength="15" placeholder="选填" onfocus="hidePlaceholder(this,&#39;&#39;);" onblur="hidePlaceholder(this,&#39;选填&#39;);"></textarea></td>
+                    </tr>
+                    <tr class="signup_table_tr" id="discription_tr2">
+                        <td class="border_td color_cell signup_title_td">　描述：</td>
+                        <td colspan="2"><p id="discription2" style="float:left;padding-left:10px;"></p></td>
+                    </tr>
+                    <tr class="signup_table_tr">
+                        <td class="border_td color_cell signup_title_td">　审批人：</td>
+                        <td>
+                            <p id="inputtips" style="color: #999999; margin-left: 6px; letter-spacing: 1px; font-size: 1.164rem; font-family:&#39;PingFang-SC-Medium&#39;;">
+                                必选</p>
+                            <ul id="approvers"></ul>
+                            <!-- <textarea id="approval_area" rows="1" cols="1" placeholder="必选" maxlength="10" onfocus="hidePlaceholder(this,'');" onblur="hidePlaceholder(this,'必选');"></textarea> -->
+                        </td>
+                        <td class="signup_img_td">
+                            <table style="border: none;padding: 0;padding-top: 10px;height: 100%;">
+                                <tbody><tr>
+                                    <td style="border: none;width: 3%;"></td>
+                                    <td style="border: none;background: #FFF url(images/button_addto.png) no-repeat scroll 100% center;background-size: contain;width: 63%;" onclick="choicePerson(&#39;approver&#39;);"></td>
+                                    <td style="border: none;width: 9%;"></td>
+                                </tr>
+                            </tbody></table>
+                        </td>
+                    </tr>
+                    <tr class="signup_table_tr">
+                        <td class="border_td color_cell signup_title_td">　抄送人：</td>
+                        <td class="signup_approval_person">
+                            <ul id="copiers"></ul>
+                            <!-- <textarea id="approval_area" rows="1" cols="1" placeholder="必选" maxlength="10" onfocus="hidePlaceholder(this,'');" onblur="hidePlaceholder(this,'必选');"></textarea> -->
+                        </td>
+                        <td class="signup_img_td">
+                            <table style="border: none;padding: 0;padding-top: 10px;height: 100%;">
+                                <tbody><tr>
+                                    <td style="border: none;width: 3%;"></td>
+                                    <td style="border: none;background: #FFF url(images/button_addto.png) no-repeat scroll 100% center;background-size: contain;width: 63%;" onclick="choicePerson(&#39;copier&#39;);"></td>
+                                    <td style="border: none;width: 9%;"></td>
+                                </tr>
+                            </tbody></table>
+                        </td>
+                    </tr>
+                    <tr>
+                        </tr></tbody></table><table style="margin-top: 15px;">
+                            <tbody><tr>
+                                <td style="background-color: #b4b0af;text-align: center;color: #ffffff;font-family:&#39;PingFang-SC-Medium&#39;;" onclick="cancelEditLabel();">取消
+                                </td>
+                                <td style="background-color: #d94433;text-align: center;color: #ffffff;font-family:&#39;PingFang-SC-Medium&#39;;" onclick="comfirmEditLabel();">确定
+                                </td>
+                            </tr>
+                        </tbody></table>
+                    
+                
+            </div>
+
+            <div id="choicePerson" class="hide">
+                <!-- <div class="searchArea">
+							<input id="searchKeyworld" type="text" required placeholder="点击输入"/>
+							<button onClick="searchPerson();">搜索</button>
+						</div> -->
+                <div id="search_div" class="search_content ">
+                    <input type="search" placeholder="搜索" id="searchKeyworld" required="">
+                    <span class="button_top_a search fl" id="search_img" onclick="searchPerson();"></span>
+                </div>
+                <div id="searchMask" class="hide"></div>
+                <table class="search_detail_table ">
+                    <tbody><tr class="search_detail_tr">
+                        <td colspan="4" class="border_td color_cell search_td_first">ID</td>
+                        <td colspan="4" class="border_td color_cell search_td_second">姓名</td>
+                        <td colspan="4" class="border_td border_last_td color_cell search_td_third">部门</td>
+                    </tr>
+                    </tbody><tbody id="personTbody"></tbody>
+                </table>
+                <div>
+                    <table style="margin-top: 15px;">
+                        <tbody><tr>
+                            <td style="background-color: #b4b0af;text-align: center;color: #ffffff;font-family:&#39;PingFang-SC-Medium&#39;;" onclick="cancelChoicePerson();">取消
+                            </td>
+                            <td style="background-color: #d94433;text-align: center;color: #ffffff;font-family:&#39;PingFang-SC-Medium&#39;;" onclick="confirmChoicePerson();">确定
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </div>
+                <!-- <table>
+							<tr>
+								<th>ID</th><th>姓名</th><th>部门</th>
+							</tr>
+							<tbody id="personTbody">
+								<tr onClick="switchPerson(this);">
+									<td>030411150</td><td>李建坤</td><td>信息部门SAP开发小组</td>
+								</tr>
+							 </tbody>
+						</table> -->
+                <!-- <div class="btnArea">
+							<button onClick="cancelChoicePerson();">取消</button>
+							<button onClick="confirmChoicePerson();">确定</button>
+						</div> -->
+            </div><!--加签相关结束-->
+
+
+            <table class="approval_table" style="border:0; cellspcing:0;" id="approval_cont">
+                <tbody><tr id="Select">
+                    <td colspan="3" class="border_td color_cell">操作类型</td>
+                    <td colspan="3" class="border_td">
+                        <input type="hidden" value="" id="op-type-value">
+                        <input type="hidden" id="op-gen" value="">
+                        <span class="op-type" data-opinio="APP" id="agree" onclick="selectRadio(this)"><span class="radio"></span><b>同意</b></span>
+                    </td>
+                    <td colspan="3" class="border_td">
+                        <span class="op-type" data-opinio="REJ" id="disagree" onclick="selectRadio(this)"><span class="radio"></span><b>不同意</b></span>
+                    </td>
+                    <td colspan="3">
+                        <span class="op-type" data-opinio="BAC" id="rollback" onclick="selectRadio(this)"><span class="radio"></span><b>退回</b></span>
+                    </td>
+
+                    <td colspan="3">
+                                 <span class="op-type hide" data-opinio="COT" id="ctin" onclick="selectRadio(this)"><span class="radio"></span><b>继续谈判</b></span>
+                    </td>
+
+                </tr>
+                <tr id="idea">
+                    <td colspan="3" class="border_td color_cell">审批意见</td>
+                    <td colspan="9"><textarea rows="4" cols="30" placeholder="选填" id="op-value" onfocus="hidePlaceholder(this,&#39;&#39;);" onblur="hidePlaceholder(this,&#39;选填&#39;);"></textarea></td>
+                </tr>
+
+
+                <!-- <tr id="step" class="hide">
+							<td>步骤</td>
+							<td style="position:relative;text-align:left;"><span id="sel-step" style="display: inline-block;max-width: 165px;word-wrap: break-word;"></span><span class="select" onclick="toggleRollbackSel(true)" style="position:absolute;right:5px;top:15px;"><span class="select_op">选择<img id="op-step" style="position:relative;top:4px;"></span></span></td>
+						</tr>
+						<tr id="approval" class="hide">
+							<td>审批人员</td>
+							<td id="op-person"></td>
+						</tr> -->
+                </tbody></table><table id="step" class="operation_type_table hide" style="margin-top:-1px;">
+                    <tbody><tr id="operation_type_tr">
+                        <td colspan="3" class="border_td color_cell operation_type_td_first">步骤</td>
+                        <td colspan="6" class="operation_type_td_second"><span id="sel-step">资料员打印</span></td>
+                        <td colspan="3" class="operation_type_td_third">
+                            <table style="border: none;padding: 0;padding-top: 10px;height: 100%;">
+                                <tbody><tr>
+                                    <td style="border: none;width: 3%;"></td>
+                                    <td style="border: none;background: #FFF url(images/button_addto.png) no-repeat scroll 100% center;background-size: contain;width: 63%;" onclick="toggleRollbackSel(true);"></td>
+                                    <td style="border: none;width: 9%;"></td>
+                                </tr>
+                            </tbody></table>
+                        </td>
+                    </tr>
+                    <tr id="approval" class="hide">
+                        <td colspan="3" class="border_td color_cell operation_type_td_first">审批人员</td>
+                        <td colspan="9" class="operation_type_td_second" id="op-person">陈清豹</td>
+                    </tr>
+                </tbody></table>
+
+
+                <table class="approval_table " style="border:0; cellspcing:0;" id="approval_cont_btn">
+                    <tbody><tr id="approval_btn">
+                        <td colspan="12">
+                            <div class="approval_div">
+                                <ul>
+                                    <li id="labelBtn" class="approval_signup hide" onclick="clickAddLabelBtn(-1);">加签</li>
+                                    <li id="submit-container" class="approval_comfirm" onclick="approvalSubmit();">确定
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody></table>
+
+
+                <!-- <tr id="labelList" class="hide">
+							<td colspan="2">
+								<table id="addLabel">
+									<thead>
+										<tr>
+											<th style="width:35%;">描述</th>
+											<th style="width:25%;">审批人</th>
+											<th style="width:25%;">抄送人</th>
+											<th style="width:15%;"></th>
+										</tr>
+									</thead>
+									<tbody id="addLabelBody"></tbody>
+								</table>
+							</td>
+						</tr> -->
+                <table class="approval_detail_table  hide" id="addLabel">
+                    <thead>
+                    <tr id="approval_detail_title" class="approval_detail_tr">
+                        <td colspan="4" class="border_td color_cell">描述</td>
+                        <td colspan="4" class="border_td color_cell">审批人</td>
+                        <td colspan="4" class="border_td border_last_td color_cell">抄送人</td>
+                    </tr>
+                    </thead>
+                    <tbody id="addLabelBody"></tbody>
+                </table>
+
+            
+
+
+            <!--
+					<div class="sure_btn" id="submit-container">
+						<div class="button btn-submit" onclick="approvalSubmit()" id="sub-Btn"><span class="btn_sp">确定</span></div>
+					</div>
+					<div class="jl" id="appr-history-title"><p>审批记录</p></div>
+					-->
+
+            <table class="approval_table bottom_table " id="zmodel3">
+                <tbody><tr id="approval_select">
+                    <td colspan="3">
+                        <div class="approval_div">
+                            <ul id="detailTabs3">
+                                <li class="approval_record selected" id="approvalRecordTab" onclick="showApprovalRecord()">审批记录
+                                </li>
+                                <li class="approval_line" id="approvalFlowTab" onclick="showApprovalFlow()">审批流程</li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+            </tbody></table>
+
+            <div class="approvalItem_cont" id="approvalRecordCont">
+                <ul id="approvalItem_conts"><li style="border-bottom:1px solid #cccccc;"><table class="recordTable"><tbody><tr><td class="record_td_first">资料员打印(陈清豹)</td><td class="record_td_second">2020-03-05 14:51:15</td><td rowspan="2" class="record_td_img"><img class="record_img" style="height:26px;" src="./审批流程_files/icon_computer.png"></td></tr><tr><td colspan="2" class="record_td_descript">同意 :</td></tr></tbody></table></li><li style="border-bottom:1px solid #cccccc;"><table class="recordTable"><tbody><tr><td class="record_td_first">项目总/工程主管领导(陈清豹)</td><td class="record_td_second">2020-03-05 14:49:35</td><td rowspan="2" class="record_td_img"><img class="record_img" style="height:26px;" src="./审批流程_files/icon_computer.png"></td></tr><tr><td colspan="2" class="record_td_descript">同意 :</td></tr></tbody></table></li><li style="border-bottom:1px solid #cccccc;"><table class="recordTable"><tbody><tr><td class="record_td_first">资料员打印(陈清豹)</td><td class="record_td_second">2020-03-05 14:49:04</td><td rowspan="2" class="record_td_img"><img class="record_img" style="height:26px;" src="./审批流程_files/icon_computer.png"></td></tr><tr><td colspan="2" class="record_td_descript">退回 :</td></tr></tbody></table></li><li style="border-bottom:1px solid #cccccc;"><table class="recordTable"><tbody><tr><td class="record_td_first">监察分室印章员(陈清豹)</td><td class="record_td_second">2020-03-05 14:48:41</td><td rowspan="2" class="record_td_img"><img class="record_img" style="height:26px;" src="./审批流程_files/icon_computer.png"></td></tr><tr><td colspan="2" class="record_td_descript">退回 :</td></tr></tbody></table></li><li style="border-bottom:1px solid #cccccc;"><table class="recordTable"><tbody><tr><td class="record_td_first">资料员打印(陈清豹)</td><td class="record_td_second">2020-03-05 14:48:11</td><td rowspan="2" class="record_td_img"><img class="record_img" style="height:26px;" src="./审批流程_files/icon_computer.png"></td></tr><tr><td colspan="2" class="record_td_descript">同意 :</td></tr></tbody></table></li><li style="border-bottom:1px solid #cccccc;"><table class="recordTable"><tbody><tr><td class="record_td_first">项目总/工程主管领导(陈清豹)</td><td class="record_td_second">2020-03-05 14:45:54</td><td rowspan="2" class="record_td_img"><img class="record_img" style="height:26px;" src="./审批流程_files/icon_computer.png"></td></tr><tr><td colspan="2" class="record_td_descript">同意 :</td></tr></tbody></table></li><li style="border-bottom:1px solid #cccccc;"><table class="recordTable"><tbody><tr><td class="record_td_first">工程部负责人(陈清豹)</td><td class="record_td_second">2020-03-05 14:45:27</td><td rowspan="2" class="record_td_img"><img class="record_img" style="height:26px;" src="./审批流程_files/icon_computer.png"></td></tr><tr><td colspan="2" class="record_td_descript">同意 :</td></tr></tbody></table></li><li style="border-bottom:1px solid #cccccc;"><table class="recordTable"><tbody><tr><td class="record_td_first">工程部项目经理(陈清豹)</td><td class="record_td_second">2020-03-05 14:44:32</td><td rowspan="2" class="record_td_img"><img class="record_img" style="height:26px;" src="./审批流程_files/icon_computer.png"></td></tr><tr><td colspan="2" class="record_td_descript">提交 :</td></tr></tbody></table></li></ul>
+            </div>
+            <div class="list_item_cont hide" id="approvalFlowCont">
+                <ul id="approvalFlow_conts"><li onclick="clickAddLabelBtn(0);"><table class="lineTable class = " uneditable""="" id="flowItemTable0"><tbody><tr><td class="line_td_first">1.工程部项目经理</td><td rowspan="3" class="line_td_second"><table style="border: none;padding: 0;height: 100%;background-color:inherit;"><tbody><tr><td style="padding: 6%;"></td></tr><tr><td class="line_img_td"></td></tr><tr><td></td></tr></tbody></table></td></tr><tr><td class="line_person_descript" id="flowApprover0">审批人：00106383 陈清豹</td></tr><tr><td class="line_person_descript line_last_td" id="flowCc0">抄送人： </td></tr></tbody></table></li><li onclick="clickAddLabelBtn(1);"><table class="lineTable class = " uneditable""="" id="flowItemTable1"><tbody><tr><td class="line_td_first">2.工程部负责人</td><td rowspan="3" class="line_td_second"><table style="border: none;padding: 0;height: 100%;background-color:inherit;"><tbody><tr><td style="padding: 6%;"></td></tr><tr><td class="line_img_td"></td></tr><tr><td></td></tr></tbody></table></td></tr><tr><td class="line_person_descript" id="flowApprover1">审批人：00106383 陈清豹</td></tr><tr><td class="line_person_descript line_last_td" id="flowCc1">抄送人： </td></tr></tbody></table></li><li onclick="clickAddLabelBtn(2);"><table class="lineTable class = " uneditable""="" id="flowItemTable2"><tbody><tr><td class="line_td_first">3.项目总/工程主管领导</td><td rowspan="3" class="line_td_second"><table style="border: none;padding: 0;height: 100%;background-color:inherit;"><tbody><tr><td style="padding: 6%;"></td></tr><tr><td class="line_img_td"></td></tr><tr><td></td></tr></tbody></table></td></tr><tr><td class="line_person_descript" id="flowApprover2">审批人：00106383 陈清豹</td></tr><tr><td class="line_person_descript line_last_td" id="flowCc2">抄送人： </td></tr></tbody></table></li><li onclick="clickAddLabelBtn(3);"><table class="lineTable class = " uneditable""="" id="flowItemTable3"><tbody><tr><td class="line_td_first">4.资料员打印</td><td rowspan="3" class="line_td_second"><table style="border: none;padding: 0;height: 100%;background-color:inherit;"><tbody><tr><td style="padding: 6%;"></td></tr><tr><td class="line_img_td"></td></tr><tr><td></td></tr></tbody></table></td></tr><tr><td class="line_person_descript" id="flowApprover3">审批人：00106383 陈清豹</td></tr><tr><td class="line_person_descript line_last_td" id="flowCc3">抄送人： </td></tr></tbody></table></li><li onclick="clickAddLabelBtn(4);"><table class="lineTable editing" id="flowItemTable4"><tbody><tr><td class="line_td_first">5.监察分室印章员</td><td rowspan="3" class="line_td_second"><table style="border: none;padding: 0;height: 100%;background-color:inherit;"><tbody><tr><td style="padding: 6%;"></td></tr><tr><td class="line_img_td"></td></tr><tr><td></td></tr></tbody></table></td></tr><tr><td class="line_person_descript" id="flowApprover4">审批人：00106383 陈清豹</td></tr><tr><td class="line_person_descript line_last_td" id="flowCc4">抄送人： </td></tr></tbody></table></li><li onclick="clickAddLabelBtn(5);"><table class="lineTable waitedit" id="flowItemTable5"><tbody><tr><td class="line_td_first">6.资料员</td><td rowspan="3" class="line_td_second"><table style="border: none;padding: 0;height: 100%;background-color:inherit;"><tbody><tr><td style="padding: 6%;"></td></tr><tr><td class="line_img_td"></td></tr><tr><td></td></tr></tbody></table></td></tr><tr><td class="line_person_descript" id="flowApprover5">审批人：00106383 陈清豹</td></tr><tr><td class="line_person_descript line_last_td" id="flowCc5">抄送人： </td></tr></tbody></table></li></ul>
+            </div>
+        </div>
+
+
+        <!--计划开发-->
+        <div id="Leave-info" class="hide tab-content">
+            <h4 id="companyTable1Title"></h4>
+            <div class="grade-per" id="grade-per"><span class="grade" id="grade"></span></div>
+            <table style="margin-bottom:30px;" id="companyTable1"></table>
+            <div class="basic-attach" id="Leave-attach"></div>
+            <div id="detailTable4Wrapper" style="overflow: hidden;">
+                <div id="detailTable4Scroller" style="transition-property: transform; transform-origin: 0px 0px; transform: translate(0px, 0px) translateZ(0px);">
+                    <table class="Leave-info" id="companyTable">
+                        <tbody><tr id="LeaveHeader"></tr>
+                        </tbody><tbody id="Leave-infos-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- placeholder -->
+        <div style="height:10px;"></div>
+    </div>
+</div>
+<div id="stepSelMask" class="hide"></div>
+<div id="stepSelContainer" class="hide" style="left:207px;">
+    <div id="stepSelHead">选择回退步骤</div>
+    <div id="stepSelBody"><div class="rollback-item" onclick="rollBackTo(&#39;4&#39;,&#39;资料员打印&#39;,&#39;陈清豹&#39;)">资料员打印(陈清豹)<span class="sel-operson"></span></div><div class="rollback-item" onclick="rollBackTo(&#39;3&#39;,&#39;项目总/工程主管领导&#39;,&#39;陈清豹&#39;)">项目总/工程主管领导(陈清豹)<span class="sel-operson"></span></div><div class="rollback-item" onclick="rollBackTo(&#39;2&#39;,&#39;工程部负责人&#39;,&#39;陈清豹&#39;)">工程部负责人(陈清豹)<span class="sel-operson"></span></div></div>
+</div>
+
+<script type="text/javascript">
+    var activeDetailTable = 1;
+    var activeBizId = "";
+    var todoType = "";
+    var title = "";
+    var scrollDetail, scrollDetail2, scrollDetailTable1, scrollDetailTable2;
+    var scrollDetailTable4, scrollDetailTable7;
+    var activeIds = {company: "", project: "", plan: ""};
+    var labelType = -1; //调用加签页面的类型 （-1：加签按钮 >0:审批记录列表行）
+    var flowListData;
+    var HtmlUtil = {
+        /*1.用浏览器内部转换器实现html转码*/
+        htmlEncode: function (html) {
+            //1.首先动态创建一个容器标签元素，如DIV
+            var temp = document.createElement("div");
+            //2.然后将要转换的字符串设置为这个元素的innerText(ie支持)或者textContent(火狐，google支持)
+            (temp.textContent != undefined) ? (temp.textContent = html) : (temp.innerText = html);
+            //3.最后返回这个元素的innerHTML，即得到经过HTML编码转换的字符串了
+            var output = temp.innerHTML;
+            temp = null;
+            return output;
+        },
+        /*2.用浏览器内部转换器实现html解码*/
+        htmlDecode: function (text) {
+            //1.首先动态创建一个容器标签元素，如DIV
+            var temp = document.createElement("div");
+            //2.然后将要转换的字符串设置为这个元素的innerHTML(ie，火狐，google都支持)
+            temp.innerHTML = text;
+            //3.最后返回这个元素的innerText(ie支持)或者textContent(火狐，google支持)，即得到经过HTML解码的字符串了。
+            var output = temp.innerText || temp.textContent;
+            temp = null;
+            return output;
+        },
+        /*3.用正则表达式实现html转码*/
+        htmlEncodeByRegExp: function (str) {
+            var s = "";
+            if (str.length == 0) return "";
+            s = str.replace(/&/g, "&amp;");
+            s = s.replace(/</g, "&lt;");
+            s = s.replace(/>/g, "&gt;");
+            s = s.replace(/ /g, "&nbsp;");
+            s = s.replace(/\'/g, "&#39;");
+            s = s.replace(/\"/g, "&quot;");
+            return s;
+        },
+        /*4.用正则表达式实现html解码*/
+        htmlDecodeByRegExp: function (str) {
+            var s = "";
+            if (str.length == 0) return "";
+            s = str.replace(/&amp;/g, "&");
+            s = s.replace(/&lt;/g, "<");
+            s = s.replace(/&gt;/g, ">");
+            s = s.replace(/&nbsp;/g, " ");
+            s = s.replace(/&#39;/g, "\'");
+            s = s.replace(/&quot;/g, "\"");
+            return s;
+        }
+    };
+
+    function fn_goback() {
+        //jq.goBack();
+        //openMain();
+        openListPage();
+    }
+
+    function fn_gobackHome() {
+        //jq.goBackTo("index");
+        openMain();
+    }
+
+    function openMain() {
+        // go to main page
+        window.open("Menu.html", "_self");
+    }
+
+    window.onresize = function () {
+        var headTitle = $("#header_title");
+        var headTitleWidth = headTitle.offset().width;
+        var returnImgWidth = $(".return_title").offset().width;
+        headTitle.css("left", ($(window).width() - headTitleWidth - returnImgWidth) / 2);
+        var divWidth = $("#stepSelContainer").offset().width;
+        $("#stepSelContainer").attr("style", "left:" + (window.screen.width - divWidth) / 2 + "px;");
+    }
+
+    function load() {
+        var headTitle = $("#header_title");
+        var headTitleWidth = headTitle.offset().width;
+        var returnImgWidth = $(".return_title").offset().width;
+        headTitle.css("left", ($(window).width() - headTitleWidth - returnImgWidth) / 2);
+
+        //初始化图片路径
+        initImg();
+        scrollDetail = new iScroll('detailWrapper');
+        scrollDetail2 = new iScroll('detail2Wrapper');
+        scrollDetailTable1 = new iScroll('detailTable1Wrapper', {
+            onBeforeScrollStart: function (e) {
+                e.stopPropagation();
+            }
+        });
+        scrollDetailTable2 = new iScroll('detailTable2Wrapper', {
+            onBeforeScrollStart: function (e) {
+                e.stopPropagation();
+            }
+        });
+        scrollDetailTable4 = new iScroll('detailTable4Wrapper', {
+            onBeforeScrollStart: function (e) {
+                e.stopPropagation();
+            }
+        });
+        scrollDetailTable7 = new iScroll('detailTable7Wrapper', {
+            onBeforeScrollStart: function (e) {
+                e.stopPropagation();
+                e.preventDefault();
+            }
+        });
+        var bizId = jq.getParameter("bizId");
+        activeBizId = bizId;
+        todoType = jq.getParameter("todoType");
+        var zmodel = jq.getParameter("zmodel");
+        title = jq.getParameter("title");
+
+        //alert("activeBizId,todoType,zmodel=" + activeBizId + "," + todoType + "," + zmodel);
+        if (zmodel == 1) {
+            getBasicInfo(bizId);	// get basic infos
+            $('#basic-info').text('基本信息');
+            $('#zmodel1').css('display', 'block');
+            $('#zmodel2').css('display', 'none');
+        } else {
+            getLeaveInfo(bizId, 1);
+            $('#Leave-info').removeClass('hide');
+            $('#baseInfo').addClass('hide');
+            $('#zmodel2').css('display', 'block');
+            $('#zmodel1').css('display', 'none');
+            $('#header_title').text("流程审批");
+            //localStorage.setItem("bizId", "bizId");
+        }
+        if (todoType == 1) {
+            $('#header_title').text("流程审批");
+        } else {
+            $('#header_title').text("流程查看");
+        }
+
+        toggleRollbackSel(false);
+        toggleApproval(todoType);
+        clearApprovalSubmit();
+    }
+
+    // 提交后需要清除掉提交相关的内容
+    function clearApprovalSubmit() {
+        $('#op-type-value').val("");
+        $('#op-gen').val("");
+        $('.op-type>.radio').removeClass('checked');
+        $('#op-value').val("");
+        $('#sel-step').text("");
+        $('#op-person').text("");
+        $('#stepSelBody').empty();
+    }
+
+    // 在点击"退回"的时候，会弹出退回步骤已经遮罩层，该函数是对遮罩层进行隐藏与显示
+    function toggleRollbackSel(state) {
+        if (state) {
+            $('#stepSelMask').removeClass('hide');
+            $('#stepSelContainer').removeClass('hide');
+            var divWidth = $("#stepSelContainer").offset().width;
+            $("#stepSelContainer").attr("style", "left:" + (window.screen.width - divWidth) / 2 + "px;");
+        } else {
+            $('#stepSelMask').addClass('hide');
+            $('#stepSelContainer').addClass('hide');
+        }
+    }
+
+    function initImg() {
+
+        $('#backIcon_img').attr('src', 'images/backIcon.png');
+        $('#homeIcon').attr('src', 'images/home.png');
+        //$('#op-step').attr('src', 'images/select.png');
+        //$("#agree").css("background-image","url('images/radio.png')");
+        //$("#disagree").css("background-image","url('images/radio.png')");
+        //$("#rollback").css("background-image","url('images/radio.png')");
+
+    }
+
+    //打开热点信息
+    function openPoint(potType, potId, potFm) {
+        var openPointUrl = "openPoint.html?potType=" + potType + "&potId=" + potId + "&potFm=" + potFm;
+        window.open(openPointUrl, "_self");
+    }
+
+    // 在从已办进来的时候，是不能有审批处理的表格的，该函数隐藏与显示审批处理的表格
+    function toggleApproval(todoType) {
+        if (todoType == 2) {
+            $('#approvalTab').text('审批记录');
+            $('#approval_cont').addClass('hide');
+            $('#submit-container').addClass('hide');
+        } else {
+            $('#approvalTab').text('审批处理');
+            $('#approval_cont').removeClass('hide');
+            $('#submit-container').removeClass('hide');
+        }
+    }
+
+    function openListPage() {
+        var apListUrl = "approval_list.html?todoType=" + todoType;
+        window.open(apListUrl, "_self");
+    }
+
+    function openMessage() {
+        jq.alert('此单据不支持移动审批！');
+    }
+
+    function rollBackTo(gen, role, person) {
+        $('#op-gen').val(gen);
+        $('#sel-step').text(role);
+        $('#op-person').text(person);
+        toggleRollbackSel(false);
+    }
+
+    // 点击"确认"按钮的时候，进行提交操作
+    function approvalSubmit() {
+        //var reqUrl = g_serverIP + "/evergrande/approve_v1";
+        var reqUrl = baseUrl + "/handle.action?handleCode=approve";
+        var IResult = $('#op-type-value').val();
+        var IWfsqen = $('#op-gen').val();
+        var IZwfremark = $('#op-value').val();
+
+        if (IResult == "") {
+            jq.alert("您没有选择操作类型，不能提交流程");
+            return false;
+        }
+        if (IZwfremark.trim() == "") {
+            if (IResult == "APP") {
+                IZwfremark = "同意";
+            } else if (IResult == "REJ") {
+                IZwfremark = "不同意";
+            } else if (IResult == "COT") {
+                IZwfremark = "继续谈判";
+            } else {
+                if ($('#sel-step').text().trim() == "" || $('#sel-person').text().trim() == "") {
+                    jq.alert("您没有选择退回步骤，请选择");
+                    return false;
+                }
+                IZwfremark = "退回";
+            }
+        }
+
+        IZwfremark = IZwfremark.replace(/[\r\n]/g, "");//去掉回车换行
+        var iZwfremarkEncode = HtmlUtil.htmlEncodeByRegExp(IZwfremark);
+
+        var moveNextArr = new Array();
+        for (var i = 0, len = flowListData.length; i < len; i++) {
+            var flowItemObj = new Object();
+            var flowItem = flowListData[i];
+            flowItemObj.wfsqen = flowItem.wfsqen;
+            flowItemObj.approver = flowItem.approver;
+            flowItemObj.cc = flowItem.cc;
+            moveNextArr.push(flowItemObj);
+        }
+        var move_next = JSON.stringify(moveNextArr);
+
+        //格式化“加签”信息
+        var trs = $("#addLabel tr");
+        //[{"WFSTEN":"班主任1","APPROVE":"00100702,00100020","COPY":"00100020"},{"WFSTEN":"班主任2","APPROVE":"00100020","COPY":"00100702"}]
+        var countersignArr = new Array();
+
+
+        $.each(trs, function (index, value) {
+            if (index > 0) {//去除标题行
+                var countersignObj = new Object();
+                var tds = trs.eq(index).find("td");
+                countersignObj.WFSTEN = tds.eq(0).find("span").text();
+                countersignObj.APPROVE = tds.eq(1).find("input").val();
+                countersignObj.COPY = tds.eq(2).find("input").val();
+                //countersignObj.wfsqen = tds.eq(0).find("span").text();
+                //countersignObj.approver = tds.eq(1).find("input").val();
+                //countersignObj.cc = tds.eq(2).find("input").val();
+                countersignArr.push(countersignObj);
+            }
+        });
+        var countersign = JSON.stringify(countersignArr);
+
+
+        var parameter = "{\"biz\":{\"businessid\":\"" + activeBizId + "\",\"result\":\""
+            + IResult + "\",\"wfsqen\":\"" + IWfsqen + "\",\"todotype\":\"" + todoType + "\",\"title\":\"" + title + "\",\"wfremark\" : \"" + iZwfremarkEncode
+            + "\",\"countersign\":" + countersign + ",\"move_next\":" + move_next + "}}";
+        //alert('parameter = ' + parameter);
+        var sessionId = jq.getGlobal("sessionid");
+        var isEncrypt = false;
+        jq.ajax(reqUrl, parameter, sessionId, isEncrypt, approvalSubmitCallback);
+
+
+        /* jq.confirm("确认提交该流程吗?", function () {
+
+		}); */
+    }
+
+    function approvalSubmitCallback(v) {
+        if (!v) {
+            jq.alert("提交失败,提交返回数据错误");
+            return false;
+        }
+        if (typeof v === 'string') {
+            v = JSON.parse(v);
+            if (!v) {
+                jq.alert('提交返回数据格式错误');
+                return false;
+            }
+        }
+        // 提交成功后，将数据插入到审批记录中去
+        if (v.result === 'success') {
+            jq.alert(v.message);
+            clearApprovalSubmit();
+            $('#approval_cont').addClass('hide');
+            $('#submit-container').addClass('hide');
+
+            //提交成功后退回到列表
+            openListPage();
+        } else {
+            // 否则打印后台报出的错误
+            //jq.alert("错误: " + v.message);
+            jq.alert("" + v.message);
+        }
+    }
+
+    $('#stepSelMask').on('click', function () {
+        toggleRollbackSel(false);
+    });
+
+    // 获取基本信息
+    function getBasicInfo(bizId) {
+        var reqUrl = baseUrl + "/handle.action?handleCode=getBusinessBase";
+
+        var parameter = "{\"biz\":{\"param\":\"" + bizId + "\",\"todotype\":\"" + todoType + "\",\"title\":\"" + title + "\"}}";
+        var sessionId = jq.getGlobal("sessionid");
+        var isEncrypt = false;
+        jq.ajax(reqUrl, parameter, sessionId, isEncrypt, getBasicInfoCallback);
+    }
+
+    function getBasicInfoCallback(v) {
+        $('#basic-info').removeClass('hide');
+        $('#approvalTab').removeClass('hide');
+        var result = dataResult(v);
+        //alert('result='+JSON.stringify(result));
+        if (!result) {
+            return false;
+        }
+
+        var infos = result.baseinfo.item;
+        var attachs = result.atthBlk.item;
+        //alert('infos='+JSON.stringify(infos));
+        //alert('attachs='+JSON.stringify(attachs));
+        var infosStr = '';
+        //var infosStr = '<colgroup style="width:30%;"></colgroup><colgroup style="width:70%;"></colgroup>';
+        var attachsStr = '';
+        var firstTab = $('#detailTabs>li').eq(0);
+        var tabCon = $('#' + firstTab.attr('data-tab'));
+        firstTab.siblings().removeClass('active');
+        firstTab.addClass('active');
+        tabCon.siblings().addClass('hide');
+        tabCon.removeClass('hide');
+
+        // 明细表1和明细表2的名字
+        var bizId = result.businessid;
+        // 判断明细表1和明细表2的名字是否为空，根据明细表的个数显示tab的个数
+        var tab1Name = result.tab1Name;
+        var tab2Name = result.tab2Name;
+        var tab3Name = result.tab1Name2;
+        var tab1Name1 = result.tab1Name1;
+        if (tab1Name && tab1Name.trim() != '') {
+            $('#detailTable1Title').text(tab1Name1);
+            $('#detailTable3Title').text(tab3Name);
+            if (tab1Name.length > 4) {		// 明细表如果过长，就只显示4个字，点击后会显示全名
+                tab1Name = tab1Name.substr(0, 4);
+            }
+            $('#detail-table1-tab').removeClass('hide').text(tab1Name);
+        } else {
+            $('#detail-table1-tab').addClass('hide');
+        }
+
+        if (tab2Name && tab2Name.trim() != '') {
+            $('#detailTable2Title').text(tab2Name);
+            if (tab2Name.length > 4) {
+                tab2Name = tab2Name.substr(0, 4);
+            }
+            $('#detail-table2-tab').removeClass('hide').text(tab2Name);
+        } else {
+            $('#detail-table2-tab').addClass('hide');
+        }
+        var activeTabs = $('#detailTabs>li').not('.hide');
+        restructDetailTabs(activeTabs);
+        for (var i = 0, len = infos.length; i < len; i++) {
+            var infItem = infos[i];
+            var hotspotType = infItem.hotspotType;
+            var hotspotId = infItem.hotspotId;
+            if (infItem.megercol === "true") {
+                //infosStr += '<tr><td colspan="2" style="text-align:center !important;">'+ infos[i].desc40 +'</td></tr>';
+            } else {
+                var infoIValue = (infos[i].zvalue).trim();
+                if (infos[i].fieldType == "dec2" || infos[i].fieldType == "dec3") {
+                    infoIValue = thousands(infoIValue);
+                }
+                switch (hotspotType) {
+                    case '1': {
+                        //infosStr += '<tr><td class="basic-intro">'+ infos[i].desc40 +'</td>';
+                        //infosStr += '<td class="basic-cont"><span onclick="openPoint(1,\'' +hotspotId+ '\',\'' +infItem.hotspotFm+ '\',\'' +infItem.hotspotStr+ '\')" style="text-decoration:underline">'+ infoIValue +'</span></td>';
+                        //infosStr += '</tr>';
+                        infosStr += '<tr class="dataInfo_table_tr"><td class="dataInfo_table_td_first"><p>' + infos[i].desc40 + '：</p></td>';
+                        infosStr += '<td class="dataInfo_table_td_second"><p onclick="openPoint(1,\'' + hotspotId + '\',\'' + infItem.hotspotFm + '\',\'' + infItem.hotspotStr + '\')" style="text-decoration:underline">' + infoIValue + '</p></td>';
+                        infosStr += '</tr>';
+                        break;
+                    }
+                    case '2': {
+                        //infosStr += '<tr><td class="basic-intro">'+ infos[i].desc40 +'</td>';
+                        //infosStr += '<td class="basic-cont"><span onclick="openPoint(2,\''+ hotspotId +'\',\'' +infItem.hotspotFm+ '\')" style="text-decoration:underline">'+ infoIValue +'</span></td>';
+                        //infosStr += '</tr>';
+                        infosStr += '<tr class="dataInfo_table_tr"><td class="dataInfo_table_td_first"><p>' + infos[i].desc40 + '：</p></td>';
+                        infosStr += '<td class="dataInfo_table_td_second"><p onclick="openPoint(2,\'' + hotspotId + '\',\'' + infItem.hotspotFm + '\')" style="text-decoration:underline">' + infoIValue + '</p></td>';
+                        infosStr += '</tr>';
+                        break;
+                    }
+                    case '3': {
+                        //infosStr += '<tr><td class="basic-intro">'+ infos[i].desc40 +'</td>';
+                        //infosStr += '<td class="basic-cont"><span onclick="openMessage()" style="text-decoration:underline">'+ infoIValue +'</span></td>';
+                        //infosStr += '</a></tr>';
+                        infosStr += '<tr class="dataInfo_table_tr"><td class="dataInfo_table_td_first"><p>' + infos[i].desc40 + '：</p></td>';
+                        infosStr += '<td class="dataInfo_table_td_second"><p onclick="openMessage()" style="text-decoration:underline">' + infoIValue + '</p></td>';
+                        infosStr += '</a></tr>';
+                        break;
+                    }
+                    case '4': {
+                        //infosStr += '<tr><td class="basic-intro">'+ infos[i].desc40 +'</td>';
+                        //infosStr += '<td class="basic-cont"><span onclick="openPoint(4,\''+ hotspotId +'\',\'' +infItem.hotspotFm+ '\')" style="text-decoration:underline">'+ infoIValue +'</span></td>';
+                        //infosStr += '</tr>';
+                        infosStr += '<tr class="dataInfo_table_tr"><td class="dataInfo_table_td_first"><p>' + infos[i].desc40 + '：</p></td>';
+                        infosStr += '<td class="dataInfo_table_td_second"><p onclick="openPoint(4,\'' + hotspotId + '\',\'' + infItem.hotspotFm + '\')" style="text-decoration:underline">' + infoIValue + '</p></td>';
+                        infosStr += '</tr>';
+                        break;
+                    }
+                    default: {
+                        //infosStr += '<tr><td class="basic-intro">'+ infos[i].desc40 +'</td>';
+                        //infosStr += '<td class="basic-cont">'+ infoIValue +'</td>';
+                        //infosStr += '</tr>';
+                        infosStr += '<tr class="dataInfo_table_tr">';
+                        infosStr += '<td class="dataInfo_table_td_first"><p>' + infos[i].desc40 + '：</p></td>';
+                        infosStr += '<td class="dataInfo_table_td_second"><p>' + infoIValue + '</p></td>';
+                        infosStr += '</tr>';
+                        break;
+                    }
+                }
+
+            }
+        }
+        $('#basic-infos-body').html(infosStr);
+
+        if (attachs.length == 0) {
+            $('#basic-attach-title').addClass('hide');
+        } else {
+            $('#basic-attach-title').removeClass('hide');
+        }
+
+        // 明细表中可能有的附件下载
+        for (var j = 0, len = attachs.length; j < len; j++) {
+            var attachBlkItem = attachs[j];
+            var attachBlkList = attachBlkItem.atth.item;
+            if (attachBlkList && attachBlkList.length > 0) {
+                var attName = attachBlkItem.atthName;
+                //var attachBlkStr = '<div class="atth-blk-title">'+ attName +'</div>'
+                //var attTable = '<table class="basic-att-table">';
+                var attachBlkStr = '';
+                var attTable = '<table class="detail_table">';
+                attTable += '<thead><tr class="detail_table_tr"><td class="detail_table_td_first" style="width:33.3%"><p>附件说明</p></td><td class="detail_table_td_second" style="width:33.3%"><p>未提供附件原因</p></td><td class="detail_table_td_third" style="width:33.3%"><p>附件</p></td></tr></thead>';
+                attTable += '<tfoot>';
+                for (var aidx = 0, alen = attachBlkList.length; aidx < alen; aidx++) {
+                    var att = attachBlkList[aidx];
+                    var fileid = att.fileid;
+                    var filename = att.filename;
+                    var fileName = Date.parse(new Date()) + filename.substring(filename.lastIndexOf("."), filename.length);
+                    //attTable += '<tr>';
+                    //attTable += '<td style="width:50% !important;position:relative;"><p class="file-text" onclick="dlAttach(\''+ att.fileid +'\',\''+att.filename + '\',\''+attSize(att.size)+'\')">'+ att.filename +'<span class="atth-size" style="margin-left:5px !important;">('+ attSize(att.size) +')</span></p>'+'<span onclick="docConvertAndDownload(\''+ fileid + '\',\'' + fileName +'\')" class="pdf_img">'+ docConvert(fileid,filename) +'</span></td>';
+                    //attTable += '<td>'+ att.description +'</td>';
+                    //attTable += '</tr>';
+                    attTable += '<tr class="detail_table_tr">';
+                    attTable += '<td class="detail_table_td_first" style="width:33.3%"><p>' + att.description + '</p></td>';
+                    attTable += '<td class="detail_table_td_second" style="width:33.3%"><p>-</p></td>';
+                    attTable += '<td class="detail_table_td_third" style="width:33.3%"><p class="file-text" onclick="dlAttach(\'' + att.fileid + '\',\'' + att.filename + '\',\'' + attSize(att.size) + '\')">' + att.filename + '<span class="atth-size" style="margin-left:5px !important;">(' + attSize(att.size) + ')</span></p>' + '<span onclick="docConvertAndDownload(\'' + fileid + '\',\'' + fileName + '\')" class="pdf_img">' + docConvert(fileid, filename) + '</span></td>';
+                    attTable += '</tr>';
+                }
+                //attTable += '</table>';
+                attTable += '</tfoot></table>';
+                attachBlkStr += attTable;
+                attachsStr += attachBlkStr;
+            }
+        }
+        $('#basic-attach').html(attachsStr);
+    }
+
+    function getDetailTableData(bizId, tabNum) {
+
+        activeDetailTable = tabNum;
+        //var reqUrl = g_serverIP + "/evergrande/getBusinessTable_v1";
+        var reqUrl = baseUrl + "/handle.action?handleCode=getBusinessTable";
+        var parameter = "{\"biz\":{\"IBusinessid\":\"" + bizId + "\",\"ITabNo\":\"" + tabNum + "\",\"todotype\":\"" + todoType + "\",\"title\":\"" + title + "\"}}";
+        var sessionId = jq.getGlobal("sessionid");
+        var isEncrypt = false;
+        jq.ajax(reqUrl, parameter, sessionId, isEncrypt, getDetailTableDataCallback);
+    }
+
+    function getDetailTableDataCallback(v) {
+        var result = dataResult(v);
+        if (!result) {
+            return false;
+        }
+        var headerData = result.header.item;
+        //alert('headerData'+JSON.stringify(headerData));
+        var headerData2 = result.header2.item;
+        //alert('headerData2'+JSON.stringify(headerData2));
+        var itemData = result.item.item;
+        var colLength2 = headerData2.length;
+        var colLength = headerData.length;
+        var itemData2 = result.item2.item;
+        var totalWidth = 0;	//表的总宽度需要所有字段宽度相加
+        var totalWidth2 = 0;
+        var sumItems = [];	// 需要合计的项目{col:2,sum:2,348},千分位
+        var sumTotals = {};
+        var thousItems = [];	// 记录需要千分位的列数
+        try {
+            for (var i = 0, len = headerData.length; i < len; i++) {
+                var headItem = headerData[i];
+                var width = headItem.zhtml.split('=')[1];
+                if (!width) {
+                    width = 0;
+                } else {
+                    width = parseInt(width) * 3;
+                }
+                totalWidth += width;
+                // 千分位的列数
+                if (headItem.fieldType == "dec3" || headItem.fieldType == "dec2") {
+                    thousItems.push(i);
+                }
+                // 需要合计的列
+                if (headItem.zsum == "X") {
+                    sumItems.push(i);
+                    sumTotals[i] = 0;
+                    sumTotals.dec = headItem.fieldType;	//标识是显示多少位小数点
+                }
+            }
+            for (var i = 0, len = headerData2.length; i < len; i++) {
+                var headItem = headerData2[i];
+                var width = headItem.zhtml.split('=')[1];
+                if (!width) {
+                    width = 0;
+                } else {
+                    width = parseInt(width) * 3;
+                }
+                totalWidth2 += width;
+                // 千分位的列数
+                if (headItem.fieldType == "dec3" || headItem.fieldType == "dec2") {
+                    thousItems.push(i);
+                }
+                // 需要合计的列
+                if (headItem.zsum == "X") {
+                    sumItems.push(i);
+                    sumTotals[i] = 0;
+                    sumTotals.dec = headItem.fieldType;	//标识是显示多少位小数点
+                }
+            }
+            var detailScreenWidth = $('#contain').width();
+            var adjust = false;
+            if (totalWidth > totalWidth2) {
+                if (totalWidth <= detailScreenWidth) {
+                    adjust = true;
+                }
+            } else {
+                if (totalWidth2 <= detailScreenWidth) {
+                    adjust = true;
+                }
+            }
+            var headerStr = '';
+            var headerStr2 = '';
+            for (var i = 0, len = headerData.length; i < len; i++) {
+                var hd = headerData[i];
+                if (!adjust) {
+                    var width = hd.zhtml.split('=')[1];
+                    width = (!width) ? 35 : parseInt(width);		//如果没有传值，给个默认值为35
+                    headerStr += '<td class="detail_table_td_first"  style="width:' + (width * 3) + 'px;text-align:center;"><p>' + hd.desc40 + '</p></td>';
+                } else {
+                    headerStr += '<td class="detail_table_td_first" style="text-align:center;"><p>' + hd.desc40 + '</p></td>';
+                }
+            }
+            for (var i = 0, len = headerData2.length; i < len; i++) {
+                var hd = headerData2[i];
+                if (!adjust) {
+                    var width = hd.zhtml.split('=')[1];
+                    width = (!width) ? 35 : parseInt(width);		//如果没有传值，给个默认值为35
+                    headerStr2 += '<td style="width:' + (width * 3) + 'px">' + hd.desc40 + '</td>';
+                } else {
+                    headerStr2 += '<td>' + hd.desc40 + '</td>';
+                }
+            }
+            var bodyStr = '';
+            var bodyStr2 = '';
+            var hasAttach = false;
+            var hasAttach2 = false;
+            for (var i = 0, len = itemData.length; i < len; i++) {
+                var atthData = itemData[i].atth.item;	//这一列中的附件
+                var atthStr = '';
+                for (var j = 0, lenA = atthData.length; j < lenA; j++) {
+                    var atthDataIndex = atthData[j];
+                    var fileid = atthDataIndex.fileid;
+                    var filename = atthDataIndex.filename;
+                    var fileName = Date.parse(new Date()) + filename.substring(filename.lastIndexOf("."), filename.length);
+                    atthStr += '<div><span onclick="dlAttach(\'' + atthData[j].fileid + '\',\'' + atthData[j].filename + '\',\'' + attSize(atthData[j].size) + '\')">' + atthData[j].filename + '<span><span onclick="docConvertAndDownload(\'' + fileid + '\',\'' + fileName + '\')" class="pdf_img">' + docConvert(fileid, filename) + '</span></div>'
+                }
+                if (atthStr != '') {
+                    hasAttach = true;		// 只要有一列有附件就好了
+                }
+                var rowData = itemData[i].zvalues.item;
+                var rowDataStr = '<tr>';
+                for (var k = 0, lenR = rowData.length; k < lenR; k++) {
+                    var zValue = rowData[k].zvalue
+                    if (sumItems.indexOf(k) != -1) {
+                        sumTotals[k] += parseFloat(zValue);
+                    }
+                    if (thousItems.indexOf(k) != -1) {
+                        zValue = thousands(zValue);
+                    }
+                    var spotType = rowData[k].hotspotType;
+                    var spotStr = rowData[k].hotspotStr;
+                    switch (spotType) {
+                        case '5': {
+                            rowDataStr += '<td style="text-align:center;" onclick="showText(\'' + spotStr + '\')" style="text-decoration:underline;text-align:center">' + zValue + '</td>';
+                            break;
+                        }
+                        default: {
+                            rowDataStr += '<td style="text-align:center;">' + zValue + '</td>';
+                            break;
+                        }
+                    }
+                }
+                if (hasAttach) {
+                    rowDataStr += '<td style="text-align:center;">' + atthStr + '</td>';
+                }
+                rowDataStr += '</tr>';
+                bodyStr += rowDataStr;
+            }
+            for (var i = 0, len = itemData2.length; i < len; i++) {
+                var atthData = itemData2[i].atth.item;	//这一列中的附件
+                var atthStr = '';
+                for (var j = 0, lenA = atthData.length; j < lenA; j++) {
+                    var atthDataIndex = atthData[j];
+                    var fileid = atthDataIndex.fileid;
+                    var filename = atthDataIndex.filename;
+                    var fileName = Date.parse(new Date()) + filename.substring(filename.lastIndexOf("."), filename.length);
+                    atthStr += '<div><span onclick="dlAttach(\'' + atthData[j].fileid + '\',\'' + atthData[j].filename + '\',\'' + attSize(atthData[j].size) + '\')">' + atthData[j].filename + '<span><span onclick="docConvertAndDownload(\'' + fileid + '\',\'' + fileName + '\')" class="pdf_img">' + docConvert(fileid, filename) + '</span></div>'
+                }
+                if (atthStr != '') {
+                    hasAttach2 = true;		// 只要有一列有附件就好了
+                }
+                var rowData = itemData2[i].zvalues.item;
+                var rowDataStr = '<tr>';
+                for (var k = 0, lenR = rowData.length; k < lenR; k++) {
+                    var zValue = rowData[k].zvalue
+                    if (sumItems.indexOf(k) != -1) {
+                        sumTotals[k] += parseFloat(zValue);
+                    }
+                    if (thousItems.indexOf(k) != -1) {
+                        zValue = thousands(zValue);
+                    }
+                    var spotType = rowData[k].hotspotType;
+                    var spotStr = rowData[k].hotspotStr;
+                    switch (spotType) {
+                        case '5': {
+                            rowDataStr += '<td style="text-align:center;" onclick="showText(\'' + spotStr + '\')" style="text-decoration:underline;text-align:center">' + zValue + '</td>';
+                            break;
+                        }
+                        default: {
+                            rowDataStr += '<td style="text-align:center;">' + zValue + '</td>';
+                            break;
+                        }
+                    }
+                }
+                if (hasAttach2) {
+                    rowDataStr += '<td style="text-align:center;">' + atthStr + '</td>';
+                }
+                rowDataStr += '</tr>';
+                bodyStr2 += rowDataStr;
+            }
+            // 如果有合计项，那么制造出来
+            var sumRow = '';
+            var sumRow2 = '';
+            if (sumItems.length > 0) {
+                var sumRow = '<tr><td>合计</td>';
+                var dec = sumTotals.dec;
+                if (dec == "dec2") dec = 2;
+                if (dec == "dec3") dec = 3;
+                for (var idx = 1; idx < colLength; idx++) {
+                    var sumData = "";
+                    if (sumItems.indexOf(idx) != -1) {
+                        sumData = (sumTotals[idx]).toFixed(dec);
+                        sumData = thousands(sumData);		//制造千分位
+                    }
+                    sumRow += '<td>' + sumData + '</td>';
+                }
+                sumRow += '</tr>';
+            }
+            bodyStr += sumRow;
+            if (activeDetailTable == 1) {
+                $('#detailTable1Header').html(headerStr);
+                $('#detailTable1Body').html(bodyStr);
+                $('#detailTable6Header').html(headerStr2);
+                $('#detailTable6Body').html(bodyStr2);
+                // 更新iscroller宽度,并刷新scrollDetailTable1
+                if (adjust) {
+                    $('#detailTable1Scroller').css('width', detailScreenWidth + 'px');
+                } else {
+                    if (totalWidth > totalWidth2) {
+                        $('#detailTable1Scroller').css('width', totalWidth + 'px');
+                    } else {
+                        $('#detailTable1Scroller').css('width', totalWidth2 + 'px');
+                    }
+                }
+                scrollDetailTable1.refresh();
+            } else {
+                // 明细表2显示
+                $('#detailTable2Header').html(headerStr);
+                $('#detailTable2Body').html(bodyStr);
+                // 更新iscroller宽度,并刷新scrollDetailTable1
+                if (adjust) {
+                    $('#detailTable2Scroller').css('width', detailScreenWidth + 'px');
+                } else {
+                    $('#detailTable2Scroller').css('width', totalWidth + 'px');
+                }
+                scrollDetailTable2.refresh();
+            }
+
+            //refixColumnHeadSize();
+        } catch (e) {
+            jq.alert('error' + e.message);
+        }
+    }
+
+    //千分位解析函数
+    function thousands(data) {
+        // 如果不能解析出来，就直接显示出来
+        if (!parseFloat(data)) {
+            return data;
+        }
+        data = (data + "").trim();		// 首先转换成为字符串，如果是数字的话
+        var dec = data.split(".")[1];
+        if (dec === undefined) {
+            dec = "";
+        }
+        var inte = data.split(".")[0];
+
+        var d = Math.floor(parseInt((inte.length) / 3));
+        var dataArr = inte.split("")
+
+        var len = dataArr.length;
+        for (var i = 1; i < d + 1; i++) {
+            var pos = len - i * 3;
+            dataArr.splice(pos, 0, ',');
+        }
+        if (dataArr[0] == ",") dataArr.shift();
+        return dataArr.join("") + "." + dec;
+    }
+
+    function restructDetailTabs($tabs) {
+        var tabNum = $tabs.length;
+        if (tabNum == 4) {
+            $tabs.each(function () {
+                $(this).removeClass('two-tab one-tab three-tab right-radius');
+            });
+        }
+        if (tabNum == 3) {
+            $tabs.each(function () {
+                $(this).removeClass('two-tab one-tab right-radius');
+                $(this).addClass('three-tab');
+            });
+        }
+        if (tabNum == 2) {
+            $tabs.each(function () {
+                $(this).removeClass('three-tab one-tab right-radius');
+                $(this).addClass('two-tab');
+            });
+        }
+        if (tabNum == 1) {
+            $tabs.each(function () {
+                $(this).removeClass('three-tab two-tab right-radius');
+                $(this).addClass('one-tab');
+            });
+        }
+        $tabs.last().addClass('right-radius');
+    }
+
+    function getApprovalData(bizId) {
+        //var reqUrl = g_serverIP + "/evergrande/getBusinessApprove_v1";
+        var reqUrl = baseUrl + "/handle.action?handleCode=getBusinessApprove";
+        var parameter = "{\"biz\":{\"param\":\"" + bizId + "\",\"todotype\":\"" + todoType + "\",\"title\":\"" + title + "\"}}";
+        var sessionId = jq.getGlobal("sessionid");
+        var isEncrypt = false;
+        jq.ajax(reqUrl, parameter, sessionId, isEncrypt, getApprovalDataCallback);
+    }
+
+    function getApprovalDataCallback(v) {
+        var result = dataResult(v);
+        if (!result) {
+            return false;
+        }
+
+        // 处理审批
+        var curName = "", curRole = "";
+        var rollBackSet = [];	// 退回设置
+        var hasButton = {aggree: false, reject: false, rollback: false};
+        var appBtns = result.appBtn;
+        rollBackSet = result.bacSet.item;
+        if (appBtns.wfappr == "" && appBtns.wfreje == "" && appBtns.wfback == "") {
+            $('#approval_cont').addClass('hide');
+            $('#submit-container').addClass('hide');
+        } else {
+            $('#approval_cont').removeClass('hide');
+            $('#submit-container').removeClass('hide');
+        }
+        if (appBtns.wfappr == "X") {
+            hasButton.aggree = true;
+            $('#agree').removeClass('hide');
+        } else {
+            $('#agree').addClass('hide');
+        }
+        if (appBtns.wfreje == "X") {
+            hasButton.reject = true;
+            $('#disagree').removeClass('hide');
+        } else {
+            $('#disagree').addClass('hide');
+        }
+        // 继续谈判
+        if (appBtns.wfcneg == "X") {
+            hasButton.ctin == true;
+            $('#ctin').removeClass('hide');
+        } else {
+            $('#ctin').addClass('hide');
+        }
+
+        if (appBtns.wfback == "X" && rollBackSet.length > 0) {
+            hasButton.rollback = true;
+            $('#rollback').removeClass('hide');
+            var defaultBackSet = rollBackSet[0];
+            $('#sel-step').text(defaultBackSet.wfsten);
+            $('#op-person').text(defaultBackSet.appName);
+            var rollBackSetStr = "";
+            for (var i = 0, len = rollBackSet.length; i < len; i++) {
+                var rollBackItem = rollBackSet[i];
+                rollBackSetStr += '<div class="rollback-item" onclick="rollBackTo(\'' + rollBackItem.wfsqen + '\',\'' + rollBackItem.wfsten + '\',\'' + rollBackItem.appName + '\')">' + rollBackItem.wfsten
+                    + '(' + rollBackItem.appName + ')<span class="sel-operson"></span></div>';
+            }
+
+            $('#stepSelBody').html(rollBackSetStr);
+        } else {
+            $('#rollback').addClass('hide');
+        }
+
+
+        //允许加签
+        if (appBtns.wfisin == "X") {
+            //alert("WfisinList:" + JSON.stringify(result.wfisinList));
+            //初始化加签信息
+            if (result.wfisinList && result.wfisinList.item.length > 0) {
+                $("#addLabel").removeClass("hide");
+                $("#addLabelBody").empty();
+                $.each(result.wfisinList.item, function (index, value) {
+                    /* var html = '<tr onClick="editLabel(this);"><td><span>'
+						+value.wfsten+'</span></td><td><span>'
+						+value.approverTxt+'</span><input type="hidden" value="'
+						+value.approver+'"/></td><td><span>'
+						+value.ccTxt+'</span><input type="hidden" value="'
+						+value.cc+'"/></td><td>'
+						+'<button onClick="deleteLabel(this);" class="deleteBtn">删除</button></td></tr>'; */
+                    var html = '<tr class="approval_detail_tr" onClick="editLabel(this);">'
+                        + '<td colspan="4" class="text_td"><span>' + value.wfsten + '</span></td>'
+                        + '<td colspan="4" class="text_td"><span>' + value.approverTxt + '</span><input type="hidden" value="' + value.approver + '"/></td>'
+                        + '<td colspan="4" class="text_td border_last_td"><span>' + value.ccTxt + '</span><input type="hidden" value="' + value.cc + '"/></td>'
+                        + '</tr>';
+                    $("#addLabelBody").append(html);
+                });
+            }
+            //$("#labelBtn,#labelList").removeClass("hide");
+            $("#labelBtn").removeClass("hide");
+        } else {
+            $("#labelBtn,#addLabel").addClass("hide");
+        }
+
+        //展现审批处理记录
+        var appList = [];
+        if (result.appList.item) {
+            appList = result.appList.item;
+        }
+        if (appList.length > 0) {
+            $('#appr-history-title').removeClass('hide');
+        } else {
+            $('#appr-history-title').addClass('hide');
+        }
+        var appListStr = ''
+        for (var i = 0, len = appList.length; i < len; i++) {
+            var appItem = appList[i];
+            var imgPath = "images/";
+            var TodoNote = "";
+            var appSystem = appItem.appSystem;
+            if (appSystem === "XMAS") {
+                //TodoNote = '<img class="img_computer" src="' + imgPath + 'op-phone.png" style="position:absolute;right:-20px;top:1px;width:15px;"/>';	//pc-img
+                TodoNote = '<img class="record_img" style="height:33px;" src="images/icon_phone.png">';
+            } else {
+                //TodoNote = '<img class="img_computer" src="' + imgPath + 'op-computer.png" style="position:absolute;right:-20px;top:1px;width:19px;"/>';	//pc-img
+                TodoNote = '<img class="record_img" style="height:26px;" src="images/icon_computer.png">';
+            }
+            //appListStr +='<li><p class="list_item_title ap-title">' + appItem.wfsten + '  ' + "(" + appItem.agentbNam + ")" + '<span class="ap-time">'+  appItem.aedtmStr + TodoNote +'<span></p><p class="agree">'
+            //	+ '<span class="app-event">'+appItem.zresultTxt + ' :</span> ' + appItem.remark+'</p>';
+            appListStr += '<li style="border-bottom:1px solid #cccccc;"><table class="recordTable">'
+                + '<tr><td class="record_td_first">' + appItem.wfsten + '(' + appItem.agentbNam + ')</td>'
+                + '<td class="record_td_second">' + appItem.aedtmStr + '</td>'
+                + '<td rowspan="2" class="record_td_img">' + TodoNote + '</td></tr>'
+                + '<tr><td colspan="2" class="record_td_descript">' + appItem.zresultTxt + ' :' + appItem.remark + '</td>'
+                + '</tr></table></li>';
+
+            var attaches = appItem.atth.item;
+            if (attaches && attaches.length > 0) {
+                appListStr += '<p class="fj-title">附件:</p>';
+                var attchesStr = "";
+                for (var j = 0, lenJ = attaches.length; j < lenJ; j++) {
+                    var atthItem = attaches[j];
+                    var fileid = atthItem.fileid;
+                    var filename = atthItem.filename;
+                    var fileName = Date.parse(new Date()) + filename.substring(filename.lastIndexOf("."), filename.length);
+                    //attchesStr += '<div style="position:relative;"><p class="atthItemText" onclick="dlAttach(\''+ atthItem.fileid +'\',\''+ atthItem.filename +'\',\''+ attSize(atthItem.size) +'\')">'
+                    //   + atthItem.filename + '<span class="atth-size">('+ attSize(atthItem.size) +')</span></p>'
+                    //   +'<span onclick="docConvertAndDownload(\''+ fileid +'\',\''+ fileName +'\')" class="pdf_img">'+ docConvert(fileid,filename) +'</span></div>';
+                    attchesStr += '<div class="app-att-item" style="position:relative"><p onclick="dlAttach(\'' + atthItem.fileid + '\',\'' + atthItem.filename + '\',\'' + attSize(atthItem.size) + '\')">'
+                        + atthItem.filename + '<span class="app-att-size">(' + attSize(atthItem.size) + ')</span><p>'
+                        + '<span onclick="docConvertAndDownload(\'' + fileid + '\',\'' + fileName + '\')" class="pdf_img">' + docConvert(fileid, filename) + '</span></div>';
+                }
+                appListStr += attchesStr;
+            }
+            appListStr += '</li>';
+        }
+
+        $('#approvalItem_conts').html(appListStr);
+
+        //展现审批流程
+        var flowList = [];
+        if (result.flowList.item) {
+            flowList = result.flowList.item;
+            //alert('flowList'+JSON.stringify(flowList));
+            flowListData = flowList;
+        }
+
+        var flowListStr = ''
+        for (var i = 0, len = flowList.length; i < len; i++) {
+            var flowItem = flowList[i];
+            var classBgColor = 'class = "uneditable"';
+            if (flowItem.enabled == "X") {
+                classBgColor = '';
+            }
+
+            var imgPath = "images/";
+            var flowNote = "";
+            if (flowItem.image == "1") {
+                //flowNote = '<img src="' + imgPath + 'done.png" style="position:absolute;right:-20px;top:1px;width:15px;"/>';	//pc-img
+            } else if (flowItem.image == "2") {
+                //classBgColor = 'class = "current_edit"';
+                classBgColor = 'editing';
+                //flowNote = '<img src="' + imgPath + 'edit.png" style="position:absolute;right:-20px;top:1px;width:15px;"/>';	//pc-img
+            } else if (flowItem.image == "3") {
+                classBgColor = 'waitedit';
+            }
+
+            //flowListStr += '<li ' + classBgColor + ' onClick="clickAddLabelBtn(' + i + ');"><table  border="0" ' + classBgColor + '  id="flowItemTable' + i
+            //			+ '" ><tr><td>'
+            //			//<p>' + flowItem.wfsqen + flowItem.wfsten + flowNote
+            //			+ '<p class="list_item_title flow-title"><b>' + flowItem.wfsqen + ' ' + flowItem.wfsten + '</b><span class="ap-time">' + flowNote +'<span></p>'
+            //			+ '</p></td></tr> <tr><td id="flowApprover' + i + '" >审批人：' + flowItem.approver + ' ' + flowItem.approverTxt
+            //			+ '</td></tr> <tr><td id="flowCc' + i + '" >抄送人：' + flowItem.cc + ' ' + flowItem.ccTxt
+            //			+ '</td></tr></table></li>';
+            flowListStr += '<li onClick="clickAddLabelBtn(' + i + ');">'
+                + '<table class="lineTable ' + classBgColor + '" id="flowItemTable' + i + '">'
+                + '<tr><td class="line_td_first">' + flowItem.wfsqen + '.' + flowItem.wfsten + '</td>'
+                + '<td rowspan="3" class="line_td_second">'
+                + '<table style="border: none;padding: 0;height: 100%;background-color:inherit;">'
+                + '<tr><td style="padding: 6%;"></td></tr><tr><td class="line_img_td"></td></tr>'
+                + '<tr><td></td></tr></table></td></tr>'
+                + '<tr><td class="line_person_descript" id="flowApprover' + i + '">审批人：' + flowItem.approver + ' ' + flowItem.approverTxt + '</td></tr>'
+                + '<tr><td class="line_person_descript line_last_td" id="flowCc' + i + '">抄送人：' + flowItem.cc + ' ' + flowItem.ccTxt + '</td></tr>'
+                + '</table></li>';
+        }
+        $('#approvalFlow_conts').html(flowListStr);
+
+        // refresh scroller
+        scrollDetail.refresh();
+    }
+
+    function getLeaveInfo(bizId, type) {
+        var Level = bizId.substring(0, 6);
+        if (Level == 'LEVEL2') {
+            $('#Level-tab').removeClass('active');
+            $('#detail-Item-tab').addClass('active');
+            $('#detail-Plan-tab').removeClass('active');
+            $('#approvalPlanTab').removeClass('active');
+            activeIds.project = bizId;
+            //activeBizId = bizId;
+        } else if (Level == 'LEVEL3') {
+            $('#Level-tab').removeClass('active');
+            $('#detail-Item-tab').removeClass('active');
+            $('#detail-Plan-tab').addClass('active');
+            $('#approvalPlanTab').removeClass('active');
+            activeIds.plan = bizId;
+        } else if (type == 1) {
+            $('#Level-tab').addClass('active');
+            $('#detail-Item-tab').removeClass('active');
+            $('#detail-Plan-tab').removeClass('active');
+            $('#approvalPlanTab').removeClass('active');
+            activeIds.company = bizId;
+            //activeBizId = bizId;
+        } else if (type == 2) {
+            $('#Level-tab').removeClass('active');
+            $('#detail-Item-tab').removeClass('active');
+            $('#detail-Plan-tab').removeClass('active');
+            $('#approvalPlanTab').addClass('active');
+            activeIds.company = bizId;
+        }
+        //var reqUrl = g_serverIP + "/evergrande/getLeaveData_v1";
+        var reqUrl = baseUrl + "/handle.action?handleCode=getLeaveData";
+        var parameter = "{\"biz\":{\"param\":\"" + bizId + "\"}}";
+        var sessionId = jq.getGlobal("sessionid");
+        var isEncrypt = false;
+        jq.ajax(reqUrl, parameter, sessionId, isEncrypt, getLeaveInfoCallbackWrapper);
+
+    }
+
+    function getLeaveInfoCallbackWrapper(v) {
+        var result = dataResult(v);
+        if (!result) {
+            return false;
+        }
+        var eLevel1Nam = result.eLevel1Nam;
+        var eLevel2Nam = result.eLevel2Nam
+        var eLevel3Nam = result.eLevel3Nam
+        var eTitleName = result.eTitleName01;
+        var eTitleName2 = result.eTitleName02;
+        $('#grade').text(eTitleName2);
+        $('#companyTable1Title').text(eTitleName);
+        var bizId = result.businessid;
+        var infos = result.baseinfo.item;
+        var headerData = result.tabDetail.header.item;
+        var LeaveBody = result.tabDetail.item.item;
+        var attachs = result.atthBlk.item;
+        var sumItems = [];	// 需要合计的项目{col:2,sum:2,348},千分位
+        var sumTotals = {};
+        var thousItems = [];	// 记录需要千分位的列数
+        var colLength = headerData.length;
+        if (eLevel1Nam == "") {
+            $("#Level-tab").addClass('hide');
+        } else {
+            $('#Level-tab').text(eLevel1Nam);
+            $('#Level-tab').removeClass('hide');
+        }
+        if (eLevel2Nam == "") {
+            $('#detail-Item-tab').addClass('hide');
+        } else {
+            $('#detail-Item-tab').text(eLevel2Nam);
+            $('#detail-Item-tab').removeClass('hide');
+
+        }
+        if (eLevel3Nam == "") {
+            $('#detail-Plan-tab').addClass('hide');
+
+        } else {
+            $('#detail-Plan-tab').text(eLevel3Nam);
+            $('#detail-Plan-tab').removeClass('hide');
+        }
+        var activeTabs = $('#detailTabs2>li').not('.hide');
+        restructDetailTabs(activeTabs);
+        var infosStr = '';
+        var attachsStr = '';
+        var totalWidth = 0;
+        for (var i = 0, len = infos.length; i < len; i++) {
+            infosStr += '<tr><td style="width:50%">' + infos[i].desc40 + '</td>';
+            infosStr += '<td>' + infos[i].zvalue + '</td>';
+            infosStr += '</tr>';
+        }
+        $('#companyTable1').html(infosStr);
+        var headerStr = '';
+        var bodyStr = '';
+        for (var i = 0, len = headerData.length; i < len; i++) {
+            var headItem = headerData[i];
+            // 不同宽度
+            var width = headItem.zhtml.split('=')[1];
+            if (!width) {
+                width = 0;
+            } else {
+                width = parseInt(width) * 3;
+            }
+            totalWidth += width;
+            // 千分位的列数
+            if (headItem.fieldType == "dec3" || headItem.fieldType == "dec2") {
+                thousItems.push(i);
+            }
+            // 需要合计的列
+            if (headItem.zsum == "X") {
+                sumItems.push(i);
+                sumTotals[i] = 0;
+                sumTotals.dec = headItem.fieldType;	//标识是显示多少位小数点
+            }
+        }
+
+        var detailScreenWidth = $('#contain').width();
+        var adjust = false;
+        if (totalWidth <= detailScreenWidth) {
+            adjust = true;
+        }
+        if (adjust) {
+            $('#detailTable4Scroller').css('width', detailScreenWidth + 'px');
+        } else {
+            $('#detailTable4Scroller').css('width', totalWidth + 'px');
+        }
+        for (var i = 0, len = headerData.length; i < len; i++) {
+            var hd = headerData[i];
+            if (!adjust) {
+                var width = hd.zhtml.split('=')[1];
+                width = (!width) ? 35 : parseInt(width);
+                headerStr += '<td style="width:' + (width * 3) + 'px;text-align:center;">' + hd.desc40 + '</td>';
+            } else {
+                headerStr += '<td style="text-align:center">' + hd.desc40 + '</td>';
+            }
+        }
+        //alert('headerStr'+headerStr);
+        $('#LeaveHeader').html(headerStr);
+        for (var i = 0, len = LeaveBody.length; i <= len; i++) {
+            try {
+                var hd = LeaveBody[i].zvalues.item;
+                bodyStr += '<tr>';
+                for (var j = 0, lenH = hd.length; j < lenH; j++) {
+                    var leaveinfo = hd[j];
+                    var zValue = hd[j].zvalue
+                    if (sumItems.indexOf(j) != -1) {
+                        sumTotals[j] += parseFloat(zValue);
+                    }
+                    if (thousItems.indexOf(j) != -1) {
+                        zValue = thousands(zValue);
+                    }
+                    var spotType = leaveinfo.hotspotType;
+                    switch (spotType) {
+                        case '5': {
+                            bodyStr += '<td onclick="showText(\'' + leaveinfo.hotspotStr + '\')" style="text-decoration:underline;text-align:center">' + leaveinfo.zvalue + '</td>';
+                            break;
+                        }
+                        case '6': {
+                            bodyStr += '<td onclick="getLeaveInfo(\'' + leaveinfo.hotspotId + '\')" style="text-decoration:underline;text-align:center;">' + leaveinfo.zvalue + '</td>';
+                            break;
+                        }
+                        case '9': {
+                            bodyStr += '<td style="background:red;color:#FFF;text-align:center;">' + leaveinfo.zvalue + '</td>';
+                            break;
+                        }
+                        default: {
+                            bodyStr += '<td style="text-align:center">' + leaveinfo.zvalue + '</td>';
+                            break;
+                        }
+                    }
+                }
+                bodyStr += '</tr>';
+            } catch (e) {
+            }
+        }
+        // 如果有合计项，那么制造出来
+        var sumRow = '';
+        if (sumItems.length > 0) {
+            var sumRow = '<tr><td style="text-align:center;">合计</td>';
+            var dec = sumTotals.dec;
+            if (dec == "dec2") dec = 2;
+            if (dec == "dec3") dec = 3;
+            for (var idx = 1; idx < colLength; idx++) {
+                var sumData = "";
+                if (sumItems.indexOf(idx) != -1) {
+                    sumData = (sumTotals[idx]).toFixed(dec);
+                    sumData = thousands(sumData);		//制造千分位
+                }
+                sumRow += '<td style="text-align:center;">' + sumData + '</td>';
+            }
+            sumRow += '</tr>';
+        }
+        bodyStr += sumRow;
+        $('#Leave-infos-body').html(bodyStr);
+        if (attachs.length == 0) {
+            $('#basic-attach-title').addClass('hide');
+        } else {
+            $('#basic-attach-title').removeClass('hide');
+        }
+        var attachsStr = "";
+        for (var j = 0, len = attachs.length; j < len; j++) {
+            var attachBlkItem = attachs[j];
+            var attachBlkList = attachBlkItem.atth.item;
+            if (attachBlkList && attachBlkList.length > 0) {
+                var attName = attachBlkItem.atthName;
+                var attachBlkStr = '<div class="atth-blk-title" style="padding:10px;background:#FAF4E8;">' + attName + '</div>'
+                var attTable = '<table class="basic-att-table">';
+                for (var aidx = 0, alen = attachBlkList.length; aidx < alen; aidx++) {
+                    var att = attachBlkList[aidx];
+                    var fileid = att.fileid;
+                    var filename = att.filename;
+                    var fileName = Date.parse(new Date()) + filename.substring(filename.lastIndexOf("."), filename.length);
+                    attTable += '<tr>';
+                    attTable += '<td style="width:50% !important;position:relative;"><p class="file-text" onclick="dlAttach(\'' + att.fileid + '\',\'' + att.filename + '\',\'' + attSize(att.size) + '\')">' + att.filename + '<span class="atth-size" style="margin-left:5px !important;">(' + attSize(att.size) + ')</span></p>' + '<span onclick="docConvertAndDownload(\'' + fileid + '\',\'' + fileName + '\')" class="pdf_img">' + docConvert(fileid, filename) + '</span></td>';
+                    attTable += '<td>' + att.description + '</td>';
+                    attTable += '</tr>';
+                }
+                attTable += '</table>';
+                attachBlkStr += attTable;
+                attachsStr += attachBlkStr;
+            }
+        }
+        $('#Leave-attach').html(attachsStr);
+        scrollDetailTable4.refresh();
+    }
+
+    //显示冒泡信息
+    function showText(popInfo, e) {
+        var popInfo = popInfo;
+        popInfo = popInfo.replace(/<br>/g, '<br/>');
+        $("#myModalMask").removeClass('hide');
+        $('#detailTable7Scroller>p').html(popInfo);
+        $('#myModal').removeClass('hide');
+        $('#myModal-body').removeClass('hide');
+        $('.close-reveal-modal').removeClass('hide');
+        scrollDetailTable7.refresh();
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    //关闭冒泡
+    function closerevealmodal() {
+        $('#myModalMask').addClass('hide');
+        $('#myModal-body').addClass('hide');
+    }
+
+    function getItemData(activeIds, num) {
+        var bizId = activeIds;
+        //getLeaveInfo(bizId);
+        $('#approval_contain').addClass('hide');
+        if (!bizId) {
+            $('#Leave-info').addClass('hide');
+        } else {
+            getLeaveInfo(bizId);
+            $('#Leave-info').removeClass('hide');
+        }
+    }
+
+    function getPlanData(activeIds, num) {
+        var bizId = activeIds;
+        //getLeaveInfo(bizId);
+        $('#approval_contain').addClass('hide');
+        if (!bizId) {
+            $('#Leave-info').addClass('hide');
+        } else {
+            getLeaveInfo(bizId);
+            $('#Leave-info').removeClass('hide');
+        }
+
+    }
+
+    function getLeaveInfos(activeIds, num) {
+        $('#Leave-info').removeClass('hide');
+        $('#approval_contain').addClass('hide');
+        //getLeaveInfo(activeIds,num);
+        var bizId = activeIds;
+        if (!bizId) {
+        } else {
+            getLeaveInfo(activeIds, num);
+        }
+
+    }
+
+    function getApprovalItemData(activeIds, num) {
+        var bizId = activeIds;
+        if (!bizId) {
+        } else {
+            getApprovalData(activeIds, num);
+        }
+        //getApprovalData(activeIds,num);
+        $('#Leave-info').addClass('hide');
+        $('#approval_contain').removeClass('hide');
+    }
+
+    function docConvert_old(fileid, filename) {
+        var pdfImg = "<img  style='height:25px;' src='" + "images/pdf.png'>";
+        var reqUrl;
+        var filenameStr = filename.substr(filename.lastIndexOf('.') + 1, filename.length);
+        if (filenameStr == "doc") {
+            //reqUrl = g_serverIP + "/evergrande/docConvert_v1";
+            reqUrl = baseUrl + "/handle.action?handleCode=docConvert";
+        } else if (filenameStr == "docx") {
+            reqUrl = baseUrl + "/handle.action?handleCode=docConvert";
+        } else if (filenameStr == "ppt") {
+            reqUrl = baseUrl + "/handle.action?handleCode=docConvert";
+        } else if (filenameStr == "ppts") {
+            reqUrl = baseUrl + "/handle.action?handleCode=docConvert";
+        } else if (filenameStr == "xls") {
+            reqUrl = baseUrl + "/handle.action?handleCode=docConvert";
+        } else if (filenameStr == "xlsx") {
+            reqUrl = baseUrl + "/handle.action?handleCode=docConvert";
+        } else if (filenameStr == "tif") {
+            reqUrl = baseUrl + "/handle.action?handleCode=docConvert";
+        } else if (filenameStr == "tiff") {
+            reqUrl = baseUrl + "/handle.action?handleCode=docConvert";
+        } else {
+            return "";
+        }
+        var parameter = "{\"biz\":{\"fileID\":\"" + fileid + "\",\"saveName\":\"" + filename + "\"}}";
+        var sessionId = jq.getGlobal('sessionid');
+        var isEncrypt = false;
+        jq.ajax(reqUrl, parameter, sessionId, isEncrypt, docConvertBack);
+        return pdfImg;
+    }
+
+    function docConvert(fileid, filename) {
+        return "";
+    }
+
+    function docConvertBack(v) {
+
+    }
+
+    function docConvertAndDownload(fileId, fileName) {
+        //var url = g_serverIP + "/evergrande/docConvertAndDownload_v1";
+        var url = baseUrl + "/handle.action?handleCode=docConvertAndDownload";
+        //var saveFolder = jq.getAttachmentPath() + "/" + fileId + fileName+'.pdf';
+        var postData = "{\"biz\":{\"fileID\":\"" + fileId + "\",\"saveName\":\"" + fileName + "\"}}";
+        var isEncrypt = "false";//是否需要加密后提交，这个只针对xmas，而且xMas启用了加密。
+        var sessionId = jq.getGlobal('sessionid');
+        //var headers = '[{"key": "xmas-session","value": \"' + sessionId + '\"}]';
+        //var autoOpen = "true";//是否下载后，自动打开。
+        //jq.downloadEx(url, postData, isEncrypt,headers,saveFolder,autoOpen);
+        //var isEncrypt = false;
+        //jq.ajax(url,postData,sessionId, isEncrypt,docConvertAndDownloadBack);
+        //return false;
+        alert(window.webview);
+        if (window.webview) {
+            window.webview.dowload(url + "&jsonParam=" + postData);
+        } else {
+            window.open(url + "&jsonParam=" + postData, "_self");
+        }
+    }
+
+    function docConvertAndDownloadBack(v) {
+        var result = dataResult(v);
+        if (!result) {
+            return false;
+        }
+        //alert("downloadUrl" + result.fileName);
+        var downloadUrl = downLoadBaseUrl + result.fileName;
+        //var postData = "{\"biz\":{}}";
+        //var isEncrypt = "false";//是否需要加密后提交
+        //var sessionId = jq.getGlobal('sessionid');
+        //var isEncrypt = false;
+        //jq.ajax(downloadUrl,postData,sessionId, isEncrypt,docConvertBack);
+        //return false;
+        window.open(downloadUrl, "_self");
+    }
+
+
+    $(function () {
+        $('#zmodel1>ul>li').each(function (index) {
+            var $this = $(this);
+            $this.click(function () {
+                $this.siblings().removeClass('active');
+                $this.addClass('active');
+                $('.list_content').addClass('hide');
+                $('.list_content').eq(index).removeClass('hide');
+            });
+        });
+        $('#zmodel2>ul>li').each(function (index) {
+            var $this = $(this);
+            $this.click(function () {
+                $this.siblings().removeClass('active');
+                $this.addClass('active');
+                //$('.list_content').addClass('hide');
+                //$('.list_content').eq(index).removeClass('hide');
+            });
+        });
+
+        $('.op-type').each(function (index) {
+            var $this = $(this);
+            var opinio = $this.attr('data-opinio');
+            $this.click(function () {
+                var radio = $(this).find('.radio');
+                $this.siblings().removeClass('active');
+                //$this.siblings().css("background-image", "url('images/radio.png')");
+                $this.addClass('active');
+                //$this.css("background-image", "url('images/radio_checked.png')");
+
+                $('#op-type-value').val(opinio);
+                $("#idea").removeClass('hide');
+                var opinionArea = $('#op-value');
+                var existingOpinio = opinionArea.val().trim();
+                if (opinio == 'APP') {
+                    $('#step').addClass('hide');
+                    $('#approval').addClass('hide');
+                    //$('#op-value').val('同意。');
+                    if (existingOpinio == "退回" || existingOpinio == "不同意" || existingOpinio == "" || existingOpinio == "继续谈判") {
+                        opinionArea.val('同意');
+                    }
+                } else if (opinio == 'REJ') {
+                    $('#step').addClass('hide');
+                    $('#approval').addClass('hide');
+                    if (existingOpinio == "退回" || existingOpinio == "同意" || existingOpinio == "" || existingOpinio == "继续谈判") {
+                        opinionArea.val('不同意');
+                    }
+                } else if (opinio == 'BAC') {
+                    $('#step').removeClass('hide');
+                    $('#approval').removeClass('hide');
+                    //$('#op-value').val('退回。');
+                    if (existingOpinio == "同意" || existingOpinio == "不同意" || existingOpinio == "" || existingOpinio == "继续谈判") {
+                        opinionArea.val('退回');
+                    }
+                } else if (opinio == "COT") {
+                    $('#step').addClass('hide');
+                    $('#approval').addClass('hide');
+                    if (existingOpinio == "同意" || existingOpinio == "不同意" || existingOpinio == "" || existingOpinio == "退回") {
+                        opinionArea.val('继续谈判');
+                    }
+                }
+            })
+        })
+
+        load();
+    });
+
+    /*
+		加签相关功能
+	*/
+
+    //去除错误提示
+    $("input").focus(function (e) {
+        $(".error").removeClass("error");
+    });
+    $(".choiceBtn").click(function (e) {
+        $(".error").removeClass("error");
+    });
+
+    function clickAddLabelBtn(type) {
+        labelType = type;
+        if (type >= 0) {
+            var flowItem = flowListData[type];
+            if (flowItem.enabled != "X") {
+                if (flowItem.image == "1") {
+                    jq.alert("该项已审批，不允许修改！")
+                } else if (flowItem.image == "2") {
+                    jq.alert("当前审批项不允许修改！")
+                }
+                return false;
+            }
+
+            $("#discription_tr1").addClass('hide');
+            $("#discription_tr2").removeClass('hide');
+            $("#discription2").html(flowItem.wfsten);
+
+            var approverTxts = flowItem.approverTxt.split(',');
+            var approvers = flowItem.approver.split(',');
+            var appTxtHtml = '';
+            for (var i = 0, len = approverTxts.length; i < len; i++) {
+                var appTxt = approverTxts[i];
+                var appr = approvers[i];
+                if (appTxt != "") {
+                    //appTxtHtml +='<li uid="'
+                    //	+ appr +'"><span>'
+                    //	+ appTxt
+                    //	+'</span><button class="deleteBtn" onClick="deletePerson(this);">删除</button></li>';
+                    appTxtHtml = '<li uid="' + appr + '" style="float:left; width:120px; padding-left:10px;">'
+                        + '<table style="border: none;height: 44px;">'
+                        + '<tr><td style="border: none; padding:0; height:10px;"></td><td style="border: none;width: 20%; padding:0;"></td></tr>'
+                        + '<tr><td style="border: none; text-align:center; font-family:\'PingFang-SC-Medium\'; padding:0;">' + appTxt + '</td>'
+                        + '<td style="border: none;width: 20%; background:#FFF url(images/icon_subtract.png) no-repeat scroll 0% center; background-size:contain;" onClick="deletePerson(this);"></td></tr>'
+                        + '<tr><td style="border: none; padding:0; height:10px;"></td><td style="border: none;width: 20%; padding:0;"></td></tr>'
+                        + '</table>';
+                    $("#inputtips").parent().children("p").empty();
+                }
+            }
+            $("#approvers").empty();
+            $("#approvers").append(appTxtHtml);
+
+            var ccTxts = flowItem.ccTxt.split(',');
+            var ccers = flowItem.cc.split(',');
+            var ccTxtHtml = '';
+            for (var i = 0, len = ccTxts.length; i < len; i++) {
+                var ccTxt = ccTxts[i];
+                var ccer = ccers[i];
+                if (ccTxt != "") {
+                    //ccTxtHtml +='<li uid="'
+                    //	+ ccer +'"><span>'
+                    //	+ ccTxt
+                    //	+'</span><button class="deleteBtn" onClick="deletePerson(this);">删除</button></li>';
+                    ccTxtHtml = '<li uid="' + ccer + '" style="float:left; width:120px; padding-left:10px;">'
+                        + '<table style="border: none;height: 44px;">'
+                        + '<tr><td style="border: none; padding:0; height:10px;"></td><td style="border: none;width: 20%; padding:0;"></td></tr>'
+                        + '<tr><td style="border: none; text-align:center; font-family:\'PingFang-SC-Medium\'; padding:0;">' + ccTxt + '</td>'
+                        + '<td style="border: none;width: 20%; background:#FFF url(images/icon_subtract.png) no-repeat scroll 0% center; background-size:contain;" onClick="deletePerson(this);"></td></tr>'
+                        + '<tr><td style="border: none; padding:0; height:10px;"></td><td style="border: none;width: 20%; padding:0;"></td></tr>'
+                        + '</table>';
+                }
+            }
+            $("#copiers").empty();
+            $("#copiers").append(ccTxtHtml);
+
+        } else {
+            $("#discription_tr1").removeClass('hide');
+            $("#discription_tr2").addClass('hide');
+            $("#discription").val("");
+            $("#approvers").empty();
+            $("#copiers").empty();
+            var html1 = '<p id="inputtips" style="color: #999999; margin-left: 6px; letter-spacing: 1px; font-size: 1.164rem; font-family:\'PingFang-SC-Medium\';">必选</p>';
+            $("#inputtips").parent().children("p").empty();
+            $("#inputtips").parent().append(html1);
+        }
+
+        $("#editLabel").removeClass("hide");
+        window.scrollTo(0, 0);
+    }
+
+    function cancelEditLabel() {
+        $("#discription").val("");
+        $("#approvers").empty();
+        $("#copiers").empty();
+        $("#editLabel").addClass("hide");
+        $("#detailTabs3 .approval_record").addClass("selected");
+    }
+
+    function comfirmEditLabel(ele) {
+        var discription = $.trim($("#discription").val());
+        var approvers = $("#approvers").find("li");
+        var copiers = $("#copiers").find("li");
+        if (approvers.length <= 0) {
+            $("#approvers").parent("td").addClass("error");
+            return false;
+        } else {
+            var approverNames = "";
+            var approverIDs = "";
+            var copierNames = "";
+            var copierIDs = "";
+            for (var i = 0; i < approvers.length; i++) {
+                if (i == 0) {
+                    //approverNames += approvers.eq(i).children("span").text();
+                    approverNames += approvers.eq(i).text();
+                    approverIDs += approvers.eq(i).attr("uid");
+                } else {
+                    //approverNames += (','+ approvers.eq(i).children("span").text());
+                    approverNames += (',' + approvers.eq(i).text());
+                    approverIDs += (',' + approvers.eq(i).attr("uid"));
+                }
+            }
+            for (var i = 0; i < copiers.length; i++) {
+                if (i == 0) {
+                    //copierNames += copiers.eq(i).children("span").text();
+                    copierNames += copiers.eq(i).text();
+                    copierIDs += copiers.eq(i).attr("uid");
+                } else {
+                    //copierNames += (','+ copiers.eq(i).children("span").text());
+                    copierNames += (',' + copiers.eq(i).text());
+                    copierIDs += (',' + copiers.eq(i).attr("uid"));
+                }
+            }
+
+            if (labelType == -1) {
+                /* var html = '<tr onClick="editLabel(this);"><td><span>'
+						+discription+'</span></td><td><span>'
+						+approverNames+'</span><input type="hidden" value="'
+						+approverIDs+'"/></td><td><span>'
+						+copierNames+'</span><input type="hidden" value="'
+						+copierIDs+'"/></td><td>'
+						+'<button onClick="deleteLabel(this);" class="deleteBtn">删除</button></td></tr>'; */
+                var html = '<tr class="approval_detail_tr" onClick="editLabel(this);">'
+                    + '<td colspan="4" class="text_td"><span>' + discription + '</span></td>'
+                    + '<td colspan="4" class="text_td"><span>' + approverNames + '</span><input type="hidden" value="' + approverIDs + '"/></td>'
+                    + '<td colspan="4" class="text_td border_last_td"><span>' + copierNames + '</span><input type="hidden" value="' + copierIDs + '"/></td>'
+                    + '</tr>';
+
+                if (g_currentEditLable) {
+                    $(g_currentEditLable).replaceWith(html);
+                    g_currentEditLable = null;
+                } else {
+                    $("#addLabelBody").append(html);
+                }
+            } else {
+                <!--var flowTableId = '#flowItemTable' + labelType + 'tr:eq(1) td:nth-child(1)';-->
+                var flowApproverId = '#flowApprover' + labelType;
+                var flowCcId = '#flowCc' + labelType;
+                $(flowApproverId).html("审批人：" + approverIDs + " " + approverNames);
+                $(flowCcId).html("抄送人：" + copierIDs + " " + copierNames);
+                var flowItem = flowListData[labelType];
+                flowItem.approver = approverIDs;
+                flowItem.approverTxt = approverNames;
+                flowItem.cc = copierIDs;
+                flowItem.ccTxt = copierNames;
+                flowListData[labelType] = flowItem;
+            }
+            $("#addLabel").removeClass("hide");
+            cancelEditLabel();
+            return false;
+        }
+    }
+
+    var g_currentEditLable;
+
+    function editLabel(ele) {
+        g_currentEditLable = ele;
+
+        var discription = $(ele).children("td").eq(0).text();
+        var approverNames = $(ele).children("td").eq(1).text().split(',');
+        var approverIDs = $(ele).children("td").eq(1).children("input").val().split(',');
+        var copierNames = $(ele).children("td").eq(2).text().split(',');
+        var copierIDs = $(ele).children("td").eq(2).children("input").val().split(',');
+
+        $("#discription").val(discription);
+        $("#approvers").empty();
+        $("#copiers").empty();
+
+        $.each(approverNames, function (index, value) {
+            //var html = '<li uid="'
+            //		+approverIDs[index]+'"><span>'
+            //		+value
+            //		+'</span><button class="deleteBtn" onClick="deletePerson(this);">删除</button></li>';
+            var html = '<li uid="' + approverIDs[index] + '" style="float:left; width:120px; padding-left:10px;">'
+                + '<table style="border: none;height: 44px;">'
+                + '<tr><td style="border: none; padding:0; height:10px;"></td><td style="border: none;width: 20%; padding:0;"></td></tr>'
+                + '<tr><td style="border: none; text-align:center; font-family:\'PingFang-SC-Medium\'; padding:0;">' + value + '</td>'
+                + '<td style="border: none;width: 20%; background:#FFF url(images/icon_subtract.png) no-repeat scroll 0% center; background-size:contain;" onClick="deletePerson(this);"></td></tr>'
+                + '<tr><td style="border: none; padding:0; height:10px;"></td><td style="border: none;width: 20%; padding:0;"></td></tr>'
+                + '</table>';
+            $("#approvers").append(html);
+        });
+        if ($(ele).children("td").eq(2).text()) {
+            $.each(copierNames, function (index, value) {
+                //var html = '<li uid="'
+                //		+copierIDs[index]+'"><span>'
+                //		+value
+                //		+'</span><button class="deleteBtn" onClick="deletePerson(this);">删除</button></li>';
+                var html = '<li uid="' + copierIDs[index] + '" style="float:left; width:120px; padding-left:10px;">'
+                    + '<table style="border: none;height: 44px;">'
+                    + '<tr><td style="border: none; padding:0; height:10px;"></td><td style="border: none;width: 20%; padding:0;"></td></tr>'
+                    + '<tr><td style="border: none; text-align:center; font-family:\'PingFang-SC-Medium\'; padding:0;">' + value + '</td>'
+                    + '<td style="border: none;width: 20%; background:#FFF url(images/icon_subtract.png) no-repeat scroll 0% center; background-size:contain;" onClick="deletePerson(this);"></td></tr>'
+                    + '<tr><td style="border: none; padding:0; height:10px;"></td><td style="border: none;width: 20%; padding:0;"></td></tr>'
+                    + '</table>';
+                $("#copiers").append(html);
+            });
+        }
+
+        $("#editLabel").removeClass("hide");
+        this.event.stopPropagation();
+        return false;
+    }
+
+    function deleteLabel(ele) {
+        try {
+            $(ele).parent().parent("tr").remove();
+        } catch (e) {
+            jq.alert(e.message);
+        }
+        this.event.stopPropagation();
+        return false;
+    }
+
+
+    //定义全局变量，标识当前人员选择类型
+    var g_choicePersonType = "approver";
+
+    //人员选择
+    function choicePerson(type) {
+        try {
+            g_choicePersonType = type;
+            if (jq.getGlobal("haveChoicedPerson")) {
+                $("#personTbody").empty();
+                var haveChoicedPerson = JSON.parse(jq.getGlobal("haveChoicedPerson"));
+                $.each(haveChoicedPerson, function (index, value) {
+                    $("#personTbody").append('<tr class="search_detail_tr" onClick="switchPerson(this);">'
+                        + '<td colspan="4" class="text_td">' + value.id + '</td>'
+                        + '<td colspan="4" class="text_td">' + value.name + '</td>'
+                        + '<td colspan="4" class="text_td border_last_td">' + value.department + '</td>'
+                        + '</tr>');
+                });
+            }
+            $("#choicePerson").removeClass("hide");
+        } catch (e) {
+            $("#choicePerson").removeClass("hide");
+            jq.alert(e.message);
+        }
+    }
+
+    function switchPerson(ele) {
+        if ($(ele).hasClass("selected")) {
+            $(ele).removeClass("selected");
+        } else {
+            $(ele).addClass("selected");
+        }
+    }
+
+    function cancelChoicePerson() {
+        $(".selected").removeClass("selected");
+        $("#choicePerson").addClass("hide");
+    }
+
+    function confirmChoicePerson() {
+        if ($(".selected").length <= 0) {
+            jq.alert("您未选择任何人！");
+            return false;
+        } else {
+            $(".selected").each(function (index, element) {
+                if ($(this).children().eq(0).text() != null) {
+                    //var html = '<li uid="'
+                    //	+$(this).children().eq(0).text()+'"><span>'
+                    //	+$(this).children().eq(1).text()
+                    //	+'</span><button class="deleteBtn" onClick="deletePerson(this);">删除</button></li>';
+                    var html = '<li uid="' + $(this).children().eq(0).text() + '" style="float:left; width:120px; padding-left:10px;">'
+                        + '<table style="border: none;height: 44px;">'
+                        + '<tr><td style="border: none; padding:0; height:10px;"></td><td style="border: none;width: 20%; padding:0;"></td></tr>'
+                        + '<tr><td style="border: none; text-align:center; font-family:\'PingFang-SC-Medium\'; padding:0;">' + $(this).children().eq(1).text() + '</td>'
+                        + '<td style="border: none;width: 20%; background:#FFF url(images/icon_subtract.png) no-repeat scroll 0% center; background-size:contain;" onClick="deletePerson(this);"></td></tr>'
+                        + '<tr><td style="border: none; padding:0; height:10px;"></td><td style="border: none;width: 20%; padding:0;"></td></tr>'
+                        + '</table>';
+
+                    if (g_choicePersonType == "approver") {
+                        if ($("#approvers").find("li[uid='" + $(this).children().eq(0).text() + "']").length == 0) {
+                            $("#inputtips").parent().children("p").empty();
+                            $("#approvers").append(html);
+                        }
+                    } else {
+                        if ($("#copiers").find("li[uid='" + $(this).children().eq(0).text() + "']").length == 0) {
+                            $("#copiers").append(html);
+                        }
+                    }
+                    var person = new Object();
+                    person.id = $(this).children().eq(0).text();
+                    person.name = $(this).children().eq(1).text();
+                    person.department = $(this).children().eq(2).text();
+                    loaclStorageChoicedPerson(person);
+                }
+            });
+            cancelChoicePerson();
+        }
+    }
+
+    function deletePerson(ele) {
+        var theul = $(ele).parents("ul").attr("id");
+        $(ele).parents("li").remove();
+        if (theul == "approvers") {
+            if ($("#approvers").children().size() <= 0) {
+                var html = '<p id="inputtips" style="color: #999999; margin-left: 6px; letter-spacing: 1px; font-size: 1.164rem; font-family:\'PingFang-SC-Medium\';">必选</p>';
+                $("#inputtips").parent().children("p").empty();
+                $("#approvers").parent().append(html);
+            }
+        } else if (theul == "copiers") {
+            if ($("#copiers").children().size() <= 0) {
+                $("#copiers").parent().append(html);
+            }
+        }
+    }
+
+    function loaclStorageChoicedPerson(person) {
+        var personList = new Array();
+        if (jq.getGlobal("haveChoicedPerson")) {
+            personList = JSON.parse(jq.getGlobal("haveChoicedPerson"));
+            $.each(personList, function (index, value) {
+                if (value.id == person.id) {
+                    personList.splice(index, 1);
+                }
+            });
+        }
+        personList.push(person);
+        jq.setGlobal("haveChoicedPerson", JSON.stringify(personList));
+    }
+
+    function searchPerson() {
+        var keyworld = $.trim($("#searchKeyworld").val());
+        if (!keyworld) {
+            jq.alert("请输入要查找人的姓名！");
+            return false;
+        }
+        //var reqUrl = g_serverIP + "/evergrande/searchPerson_v1";
+        var reqUrl = baseUrl + "/handle.action?handleCode=searchPerson";
+        var parameter = "{\"biz\":{\"IUname\":\"" + keyworld + "\"}}";
+        var sessionId = jq.getGlobal("sessionid");
+        var isEncrypt = false;
+        jq.ajax(reqUrl, parameter, sessionId, isEncrypt, searchPersonCallback);
+    }
+
+    function searchPersonCallback(v) {
+        var result = dataResult(v);
+        if (!result) {
+            return false;
+        }
+        $("#personTbody").empty();
+        if (result.item && result.item.length > 0) {
+            $.each(result.item, function (index, value) {
+                //var html = '<tr onClick="switchPerson(this);"><td>'
+                //		+value.pernr+'</td><td>'
+                //		+value.ename+'</td><td>'
+                //		+value.orgeh+'</td></tr>';
+                var html = '<tr class="search_detail_tr" onClick="switchPerson(this);">'
+                    + '<td colspan="4" class="text_td">' + value.pernr + '</td>'
+                    + '<td colspan="4" class="text_td">' + value.ename + '</td>'
+                    + '<td colspan="4" class="text_td border_last_td">' + value.orgeh + '</td>'
+                    + '</tr>';
+                $("#personTbody").append(html);
+            });
+        } else {
+            jq.alert("未能查到相关人员信息！");
+        }
+        $('#searchMask').addClass('hide');
+    }
+
+    function showApprovalRecord() {
+        $("#approvalRecordTab").addClass('selected');
+        $("#approvalFlowTab").removeClass('selected');
+        $("#approvalRecordCont").removeClass('hide');
+        $("#approvalFlowCont").addClass('hide');
+    }
+
+    function showApprovalFlow() {
+        $("#approvalFlowTab").addClass('selected');
+        $("#approvalRecordTab").removeClass('selected');
+        $("#approvalFlowCont").removeClass('hide');
+        $("#approvalRecordCont").addClass('hide');
+    }
+
+    function selectRadio(obj) {
+        if ($(obj).text() == "退回") {
+            $(".operation_type_table").removeClass("hide");
+        } else {
+            $(".operation_type_table").addClass("hide");
+        }
+        $("#Select .op-type").removeClass("active");
+    }
+
+    function hidePlaceholder(obj, text) {
+        $(obj).attr("placeholder", text);
+    }
+
+    function refixColumnHeadSize() {
+        var dataBodyTd = $($("#detailTable1Body").children()[0]).children();
+        for (var i = 0; i < dataBodyTd.length; i++) {
+            var tdWidth = $(dataBodyTd[i]).width();
+            var dataHeaderTd = $("#detailTable1Header").children()[i];
+            $(dataHeaderTd).css("width", tdWidth + "px");
+        }
+    }
+
+
+    $(function () {
+        $('#searchKeyworld').on('focus', function () {
+            $('#searchMask').css('top', 70);
+            $('#searchMask').css('height', window.screen.height - 169);
+            $('#searchMask').removeClass('hide');
+        });
+        $("#searchMask").on('click', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            $('#searchKeyworld').val("").blur();
+            $(this).addClass('hide');
+        });
+    });
+
+</script>
+
+</body></html>

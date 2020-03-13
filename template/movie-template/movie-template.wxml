@@ -1,0 +1,45 @@
+<template name="template-subject">
+
+  <view class="subject">
+    <view class="title">
+      <text>最近上映</text>
+      <navigator class="look_more" url="../../pages/more-movie/more-movie?title=最近上映">查看更多></navigator>
+    </view>
+
+    <scroll-view scroll-x="{{scrollX}}">
+      <view class="movielist">
+        <block wx:for="{{movieList}}" wx:key="*this">
+          <navigator class="movie_item" url = "../movie-detail/movie-detail">
+            <view class="movie_img">
+              <image src="{{item.envelopePic}}" mode="widthFix"></image>
+            </view>
+            <view class="movie-name">
+              {{item.title}}
+            </view>
+
+          </navigator>
+
+        </block>
+      </view>
+    </scroll-view>
+  </view>
+</template>
+
+<template name="movie-list">
+
+   <scroll-view class="search_scroll" scroll-y="true" style="height:{{scrollHeight}}px">
+    <block wx:for="{{searchData}}" wx:key="*this">
+      <view class="search_item" style="width :{{winwidth}}">
+        <view class="search_img">
+          <image src="{{item.envelopePic}}"></image>
+        </view>
+        <view class="search_name">
+          {{item.title}}</view>
+      </view>
+
+    </block>
+
+
+  </scroll-view>
+
+</template>

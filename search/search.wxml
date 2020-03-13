@@ -1,0 +1,30 @@
+<!--search/search.wxml-->
+<import src="../template/movie-template/movie-template.wxml" />
+<view class="container">
+  <view class="search_box">
+    <view class="search_detail">
+      <icon class="search_icon" type="search" size="17px"></icon>
+      <input class="search_input" bindconfirm = "searchResult"  confirm-type = "send" placeholder="搜索"></input>
+    </view>
+    <view class="cancel" bindtap="cancle">取消</view>
+  </view>
+
+
+  <scroll-view  class="search_scroll" scroll-y="true" style="height:{{scrollHeight}}px">
+      <block wx:for="{{searchData}}" wx:key="*this">
+        <view class="search_item" style="width :{{winwidth}}">
+          <view class="search_img">
+            <image src="{{item.envelopePic}}"></image>
+          </view>
+          <view class="search_name">
+            {{item.title}}</view>
+        </view>
+
+      </block>
+
+
+  </scroll-view>
+
+
+
+</view>
